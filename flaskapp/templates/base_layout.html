@@ -74,7 +74,7 @@
               </li>
             </ul>
             <ul class="nav pull-right" >
-	           {% if current_user.is_anonymous() %}
+	           {% if current_user.is_anonymous %}
 	           		<li><a href="{{ url_for('user.login') }}">{{ gettext('Login') }}</a></li>
 	           {% else %}
 	            	<li><a href="{{ url_for('user.logout') }}">{{ gettext('Logout') }} [{{ current_user.username }}]</a></li>
