@@ -1,0 +1,8 @@
+pandas==0.16
+requests==2.7.0
+sqlalchemy==1.0.8
+flask==0.10.1
+flask-cache==0.13.1
+flask-login==0.3.1
+flask-babel==0.9
+flask-sqlalchemy==2.0

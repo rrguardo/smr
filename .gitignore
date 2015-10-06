@@ -1,0 +1,11 @@
+#Edited files
+*~
+#Python compiled files
+*.pyc
+#Ignore current file
+!.gitignore
+#Virtual enviroment folder
+venv/
+docs/_build/
+lettuce-webdriver-setup-master/
+

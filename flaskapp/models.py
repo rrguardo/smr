@@ -1,0 +1,28 @@
+# -*- coding: utf-8 -*-
+"""
+    flaskapp.model
+    ~~~~~~~~~~~~~~
+    
+    SQLAlchemy database models.
+"""
+
+from flaskapp import db
+
+class Comments(db.Model):
+    """ System users model"""
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String(200))
+
+
+class CountrySmsRate(db.Model):
+    """ System rate model"""
+    __tablename__ = 'country_sms_rate'
+
+    country_cd = db.Column(db.String(2), primary_key=True)
+    prefix = db.Column(db.String(5), primary_key=True)
+    country_name = db.Column(db.String(40))
+    base_rate = db.Column(db.Float)
+    fix_rate = db.Column(db.Float)
+    insert_date = db.Column(db.DateTime)
+    update_date = db.Column(db.DateTime)
+

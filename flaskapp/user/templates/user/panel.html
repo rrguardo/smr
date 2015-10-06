@@ -1,0 +1,11 @@
+{% extends "base_layout.html" %}
+
+{% block title %} {{ gettext('User Panel') }} {% endblock %}
+
+{% block section %}
+   <!-- Main hero unit for a primary marketing message or call to action -->
+   <div class="hero-unit">
+     <h2>{{ gettext('Flask App User Panel') }}</h2>
+     <p>Username: {{ current_user.username }}</p>
+   </div>
+{% endblock %}

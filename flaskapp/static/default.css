@@ -1,0 +1,38 @@
+
+td .input_username {
+	display: none !important;
+}
+
+td .input_email {
+	display: none !important;
+}
+
+.editing .view {
+	display: none;
+}
+
+.editing input {
+	display: block !important;
+	width: 444px;
+	padding: 13px 15px 14px 20px;
+	margin: 0;
+}
+
+td .destroy {
+	position: relative;
+	display: none;
+	float: right;
+	top: -10px;
+	cursor: pointer;
+	width: 20px;
+	height: 20px;
+	background: url(./assets/destroy.png) no-repeat;
+}
+
+tr:hover .destroy {
+  	display: block;
+}
+
+tr .destroy:hover {
+  	background-position: 0 -20px;
+}

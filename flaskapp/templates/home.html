@@ -1,0 +1,70 @@
+{% extends "base_layout.html" %}
+
+{% block extra_js_css %}
+	{{ super() }}
+
+<script type="text/javascript">
+	$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+	
+<script src="{{ url_for('static', filename='default.js') }}"></script>
+
+{% endblock %}
+
+{% block section %}
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h2>{{ gettext('Flask App base web site') }}</h2>
+        <p>{{ gettext('This is a template for a simple marketing or informational website. It includes a large 
+        callout called the hero unit and three supporting pieces of content. Use it as a starting point to create 
+        something more unique.') }}</p>
+        <p><a class="btn btn-primary btn-large">{{ gettext('Learn more') }} &raquo;</a></p>
+      </div>
+
+    <table class="table table-bordered table-striped table-hover" >
+    <caption>{{ gettext('Users in database') }}</caption>
+
+    <thead>
+    <tr>
+    <th><i class="icon-user"></i> {{ gettext('User Name') }}</th>
+    <th><i class="icon-envelope"></i> {{ gettext('User email') }}</th>
+    </tr>
+    </thead>
+
+    <tbody id="users-table" >
+
+		<tr id="main-app" >
+		   <td><input id="new-user" type="text" placeholder="{{ gettext('User Name Here') }}"></td>
+	    	<td><input id="new-email" type="email" placeholder="{{ gettext('User Email Here') }}"></td>
+		</tr>
+
+    </tbody>
+    </table>
+
+      <hr>
+
+	  <div id="instructions">
+	    Double-click to edit a user info.
+	  </div>
+
+{% endblock %}
+
+
+{% block js_templates %}
+
+	{{ super() }}
+	
+	  <script type="text/template" id="item-template">
+
+	    <td> <div class="view" >  <%- username %> </div> <input class="input_username" type="text" value="<%- username %>"  /> 
+	    </td>
+
+	    <td> <div class="view" >  <%- email %></div> <input class="input_email" type="email" value="<%- email %>"  /> 
+	    <a class="destroy"></a>
+	    </td>
+
+	  </script>  
+ 
+{% endblock %}
+

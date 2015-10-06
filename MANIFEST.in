@@ -1,0 +1,8 @@
+include CHANGES LICENSE AUTHORS
+recursive-exclude flaskapp *.pyc
+recursive-exclude flaskapp *~
+recursive-include flaskapp/templates *
+recursive-include flaskapp/static *
+recursive-include flaskapp/admin/templates *
+recursive-include flaskapp/admin/static *
+

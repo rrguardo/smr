@@ -1,0 +1,23 @@
+{% extends "base_layout.html" %}
+
+{% block title %} 404 {{ gettext('Page Not Found') }}{% endblock %}
+
+{% block section %}
+
+		<article>
+		
+			<header>
+				<hgroup>
+					<h1>404 {{ gettext('Page Not Found') }}</h1>
+				</hgroup>
+			</header>
+			
+			{{ gettext('Chap, you made a mistake typing that URL.') }}
+			
+			<footer>
+				<p>{{ gettext('Source url:') }} {{ request.url }}</p>
+			</footer>
+			
+		</article>
+
+{% endblock %}

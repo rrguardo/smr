@@ -1,0 +1,469 @@
+PhantomJS is launching GhostDriver...
+[INFO  - 2014-01-11T22:53:58.621Z] GhostDriver - Main - running on port 43410
+[INFO  - 2014-01-11T22:53:59.440Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - _decorateNewWindow - page.settings: {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Unknown; Linux i686) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.10.0 (development) Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2014-01-11T22:53:59.441Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - page.customHeaders:  - {}
+[INFO  - 2014-01-11T22:53:59.441Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - CONSTRUCTOR - Desired Capabilities: {"platform":"ANY","browserName":"phantomjs","version":"","javascriptEnabled":true}
+[INFO  - 2014-01-11T22:53:59.441Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - CONSTRUCTOR - Negotiated Capabilities: {"browserName":"phantomjs","version":"1.10.0","driverName":"ghostdriver","driverVersion":"1.0.4","platform":"linux-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2014-01-11T22:53:59.441Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 42120880-7b13-11e3-b02f-01e5fa8ebe46
+[ERROR - 2014-01-11T22:53:59.781Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/register/' - Console Error (msg): TypeError: 'undefined' is not an object (evaluating 'n.replace')
+[ERROR - 2014-01-11T22:53:59.782Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/register/' - Console Error (stack): [
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/underscore-1.4.4.min.js",
+    "line": 1,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/todos.js",
+    "line": 99,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  }
+]
+[ERROR - 2014-01-11T22:54:02.537Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/login/' - Console Error (msg): TypeError: 'undefined' is not an object (evaluating 'n.replace')
+[ERROR - 2014-01-11T22:54:02.537Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/login/' - Console Error (stack): [
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/underscore-1.4.4.min.js",
+    "line": 1,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/todos.js",
+    "line": 99,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  }
+]
+[ERROR - 2014-01-11T22:54:02.722Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/register/' - Console Error (msg): TypeError: 'undefined' is not an object (evaluating 'n.replace')
+[ERROR - 2014-01-11T22:54:02.722Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/register/' - Console Error (stack): [
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/underscore-1.4.4.min.js",
+    "line": 1,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/todos.js",
+    "line": 99,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  }
+]
+[ERROR - 2014-01-11T22:54:05.503Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/login/' - Console Error (msg): TypeError: 'undefined' is not an object (evaluating 'n.replace')
+[ERROR - 2014-01-11T22:54:05.504Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/login/' - Console Error (stack): [
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/underscore-1.4.4.min.js",
+    "line": 1,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/todos.js",
+    "line": 99,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  }
+]
+[ERROR - 2014-01-11T22:54:05.680Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/login/' - Console Error (msg): TypeError: 'undefined' is not an object (evaluating 'n.replace')
+[ERROR - 2014-01-11T22:54:05.680Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/login/' - Console Error (stack): [
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/underscore-1.4.4.min.js",
+    "line": 1,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/todos.js",
+    "line": 99,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  }
+]
+[ERROR - 2014-01-11T22:54:07.514Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/panel/' - Console Error (msg): TypeError: 'undefined' is not an object (evaluating 'n.replace')
+[ERROR - 2014-01-11T22:54:07.515Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/panel/' - Console Error (stack): [
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/underscore-1.4.4.min.js",
+    "line": 1,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/todos.js",
+    "line": 99,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  }
+]
+[ERROR - 2014-01-11T22:54:07.691Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/login/' - Console Error (msg): TypeError: 'undefined' is not an object (evaluating 'n.replace')
+[ERROR - 2014-01-11T22:54:07.692Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/login/' - Console Error (stack): [
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/underscore-1.4.4.min.js",
+    "line": 1,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/todos.js",
+    "line": 99,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  }
+]
+[ERROR - 2014-01-11T22:54:09.505Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/panel/' - Console Error (msg): TypeError: 'undefined' is not an object (evaluating 'n.replace')
+[ERROR - 2014-01-11T22:54:09.505Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/panel/' - Console Error (stack): [
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/underscore-1.4.4.min.js",
+    "line": 1,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/todos.js",
+    "line": 99,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  }
+]
+[ERROR - 2014-01-11T22:54:09.671Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/login/' - Console Error (msg): TypeError: 'undefined' is not an object (evaluating 'n.replace')
+[ERROR - 2014-01-11T22:54:09.672Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/login/' - Console Error (stack): [
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/underscore-1.4.4.min.js",
+    "line": 1,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/todos.js",
+    "line": 99,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  }
+]
+[ERROR - 2014-01-11T22:54:11.490Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/login/' - Console Error (msg): TypeError: 'undefined' is not an object (evaluating 'n.replace')
+[ERROR - 2014-01-11T22:54:11.491Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/login/' - Console Error (stack): [
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/underscore-1.4.4.min.js",
+    "line": 1,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/todos.js",
+    "line": 99,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  }
+]
+[ERROR - 2014-01-11T22:54:11.713Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/login/' - Console Error (msg): TypeError: 'undefined' is not an object (evaluating 'n.replace')
+[ERROR - 2014-01-11T22:54:11.720Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/login/' - Console Error (stack): [
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/underscore-1.4.4.min.js",
+    "line": 1,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/todos.js",
+    "line": 99,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  }
+]
+[ERROR - 2014-01-11T22:54:13.538Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/login/' - Console Error (msg): TypeError: 'undefined' is not an object (evaluating 'n.replace')
+[ERROR - 2014-01-11T22:54:13.539Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/login/' - Console Error (stack): [
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/underscore-1.4.4.min.js",
+    "line": 1,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/todos.js",
+    "line": 99,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  }
+]
+[ERROR - 2014-01-11T22:54:13.754Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/login/' - Console Error (msg): TypeError: 'undefined' is not an object (evaluating 'n.replace')
+[ERROR - 2014-01-11T22:54:13.761Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/login/' - Console Error (stack): [
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/underscore-1.4.4.min.js",
+    "line": 1,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/todos.js",
+    "line": 99,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  }
+]
+[ERROR - 2014-01-11T22:54:15.570Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/login/' - Console Error (msg): TypeError: 'undefined' is not an object (evaluating 'n.replace')
+[ERROR - 2014-01-11T22:54:15.570Z] Session [42120880-7b13-11e3-b02f-01e5fa8ebe46] - Page at 'http://127.0.0.1:5000/user/login/' - Console Error (stack): [
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/underscore-1.4.4.min.js",
+    "line": 1,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/todos.js",
+    "line": 99,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  },
+  {
+    "file": "http://127.0.0.1:5000/static/assets/vendor/jquery-1.9.1.min.js",
+    "line": 3,
+    "function": ""
+  }
+]

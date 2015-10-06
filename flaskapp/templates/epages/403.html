@@ -1,0 +1,23 @@
+{% extends "base_layout.html" %}
+
+{% block title %} 403 {{ gettext('Forbidden') }}{% endblock %}
+
+{% block section %}
+
+		<article>
+		
+			<header>
+				<hgroup>
+					<h1>403 {{ gettext('Forbidden') }}</h1>
+				</hgroup>
+			</header>
+			
+			{{ gettext('Disallowed access to resources.') }}
+						
+			<footer>
+				<p>{{ gettext('Source url:') }} {{ request.url }}</p>
+			</footer>
+			
+		</article>
+
+{% endblock %}

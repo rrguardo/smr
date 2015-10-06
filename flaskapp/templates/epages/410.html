@@ -1,0 +1,23 @@
+{% extends "base_layout.html" %}
+
+{% block title %} 410 {{ gettext('Page Gone') }} {% endblock %}
+
+{% block section %}
+
+		<article>
+		
+			<header>
+				<hgroup>
+					<h1>410 {{ gettext('Page Gone') }}</h1>
+				</hgroup>
+			</header>
+			
+			{{ gettext('The resource that previously existed got deleted.') }}
+
+			<footer>
+				<p>{{ gettext('Source url:') }} {{ request.url }}</p>
+			</footer>
+			
+		</article>
+
+{% endblock %}
