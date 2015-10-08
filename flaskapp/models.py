@@ -25,4 +25,3 @@ class CountrySmsRate(db.Model):
     fix_rate = db.Column(db.Float)
     insert_date = db.Column(db.DateTime)
     update_date = db.Column(db.DateTime)
-
