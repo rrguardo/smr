@@ -36,6 +36,8 @@ def init_database():
                  '2ea6201a068c5fa0eea5d81a3863321a87f8d533')
     guest = User('guest', 'guest@example.com', 
                  '2ea6201a068c5fa0eea5d81a3863321a87f8d533')
+    guest.auth_token = "1234567"
+    guest.balance = 100
     db.session.add(admin)
     db.session.add(guest)
     db.session.commit()

@@ -2,11 +2,12 @@
 """
     flaskapp.model
     ~~~~~~~~~~~~~~
-    
+
     SQLAlchemy database models.
 """
 
 from flaskapp import db
+
 
 class Comments(db.Model):
     """ System users model"""
@@ -25,3 +26,14 @@ class CountrySmsRate(db.Model):
     fix_rate = db.Column(db.Float)
     insert_date = db.Column(db.DateTime)
     update_date = db.Column(db.DateTime)
+
+
+class SMS_Status(db.Model):
+    """ table for track sms status."""
+    id = db.Column(db.Integer, primary_key=True)
+    status = db.Column(db.String(20))
+    user_id = db.Column(db.Integer)
+
+    def __init__(self, user_id, status):
+        self.user_id = user_id
+        self.status = status
