@@ -12,6 +12,19 @@ This README would normally document whatever steps are necessary to get your app
 
 * Summary of set up
 * Configuration
+* Proxy Conf
+	eml: smr.gatew@gmail.com
+	pw: vG5nRcPd75TcV
+	name: Peter Xtrname Empty
+	* Plivo conf
+		usern: smr_gatew
+		pw: pvG5nRcPd75TcV
+	* Nexmo conf
+		eml: wrk-temp
+		pw: nvG5nRcPd75TcV
+	* Twilio conf
+		usr: smr...
+		pw: tvG5nRcPd75TcV
 * Dependencies
 * Database configuration
 * How to run tests

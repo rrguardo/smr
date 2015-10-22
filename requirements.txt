@@ -11,3 +11,6 @@ flask-wtf==0.12
 MySQL-python==1.2.5
 xlrd==0.9.4
 pika==0.10.0
+twilio==4.6.0
+plivo==0.10.3
+nexmo==1.0.1
