@@ -7,9 +7,9 @@ class tw_proxy(ProxyInterface):
 
     def __init__(self):
         # Your Account Sid and Auth Token from twilio.com/user/account
-        self._account_sid = "AC05dcefb0263c059a49047298d2a88ccf"
-        self._auth_token = "ce6510c4650f03a34d63bfa5a3ebadee"
-        self.src = "+17607849554"
+        self._account_sid = "AC94b03a2913bd39d854393b9514eea189"
+        self._auth_token = "39db55f01cb8d0797944ab58f9035eac"
+        self.src = "+17064384160"
         # phone sid PNe8fbd81576ad24ee5636156de339462a
 
     def send(self, to, msg, src=None):
@@ -22,8 +22,8 @@ class tw_proxy(ProxyInterface):
                 to=to,
                 from_=src)
             return message
-        except:
-            pass
+        except Exception, ex:
+            print str(ex)
         return False
 
     def get_balance(self):

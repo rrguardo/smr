@@ -13,8 +13,8 @@ import pika
 
 
 PROXYS = [{"class": tw_proxy, "fails": 0, "enabled": True},
-    {"class": plivo_proxy, "fails": 0, "enabled": True},
-    {"class": nexmo_proxy, "fails": 0, "enabled": True}]
+    {"class": plivo_proxy, "fails": 0, "enabled": False},
+    {"class": nexmo_proxy, "fails": 0, "enabled": False}]
 
 
 def proxy_pick():
@@ -37,8 +37,8 @@ def queue_callback(ch, method, properties, body):
     try:
         print " [x] Received %r" % (body,)
         job = json.loads(body)
-        to_ = job.get("to_")
-        message_ = job.get("message_")
+        to_ = job.get("to")
+        message_ = job.get("message")
         pid = job.get("pid")
 
         sm = SMS_Status.query.filter_by(id=pid).first()
@@ -50,8 +50,12 @@ def queue_callback(ch, method, properties, body):
         sresult = sprox().send(to_, message_)
         if not sresult:
             proxy_inc_fails(sprox)
+            print "SMS Proxy %s fails" % sprox.__name__
+            sm.status = "failed-by-sprox"
+            db.session.add(sm)
+            db.session.commit()
         else:
-            sm.status = "success"
+            sm.status = "success-delivery"
             db.session.add(sm)
             db.session.commit()
     except:

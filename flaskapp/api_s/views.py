@@ -43,6 +43,24 @@ class Auth_API:
         else:
             return jsonify({'error': 'login-error'})
 
+    def get_sms_status(self):
+        """
+        Get sms status:
+            user_id
+            auth_token
+            pid
+        """
+        if self.auth_user():
+            try:
+                pid = request.form['pid']
+                sm = SMS_Status.query.filter_by(id=pid,
+                    user_id=self._user.id).first()
+                return jsonify({'status': sm.status})
+            except:
+                return jsonify({'error': 'pid error'})
+        else:
+            return jsonify({'error': 'login-error'})
+
     def send_sms(self):
         """
         API Send SMS:
@@ -107,3 +125,8 @@ def get_balance():
 def send_sms():
     api = Auth_API()
     return api.send_sms()
+
+
+def get_sms_status():
+    api = Auth_API()
+    return api.get_sms_status()
