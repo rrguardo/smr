@@ -83,6 +83,8 @@ def logout():
 def stats():
     """ User stats view"""
     current_time = datetime.datetime.now()
-    current_time - datetime.timedelta(weeks=2)
-    result = SMS_Status.query.filter(and_(SMS_Status.user_id==current_user.id, SMS_Status.send_date > current_time))
+    current_time = current_time - datetime.timedelta(weeks=2)
+    result = SMS_Status.query.filter(and_(SMS_Status.user_id == current_user.id,
+        SMS_Status.send_date > current_time)
+        ).order_by(SMS_Status.id.desc()).limit(1000)
     return render_template('user/stats.html', data=result)

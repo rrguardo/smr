@@ -1,18 +1,85 @@
-{% extends "base_layout.html" %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
 
-{% block title %} {{ gettext('User Stats') }} {% endblock %}
+<script src="{{ url_for('static', filename='datatables/jquery-1.11.3.min.js') }}"></script>
+<script src="{{ url_for('static', filename='datatables/jquery.dataTables.min.js') }}"></script>
+<link rel="stylesheet" type="text/css"
+href="{{ url_for('static', filename='datatables/jquery.dataTables.min.css') }}">
 
-{% block section %}
-   <!-- Main hero unit for a primary marketing message or call to action -->
-   <div class="hero-unit">
-     <h2>{{ gettext('User Stats') }}</h2>
-     <p>Username: {{ current_user.username }}</p>
+<script src="{{url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script>
 
-      <ul id="navigation">
-    {% for item in data %}
-        <li>Date: {{ item.send_date }}. Status: {{ status }}</li>
-    {% endfor %}
-    </ul>
+
+
+<meta charset="utf-8" />
+		<meta name="keywords" content="HTML5, CSS3, JS" />
+		<meta name="description" content="Page description here" />
+		<meta name="abstract" content="An abstract with page description here"/>
+		<meta http-equiv="Content-Language" content="es"/>
+		<meta http-equiv="Expires" content="never"/>
+		<meta name="revisit-after" content="5 days"/>
+		<meta name="robots" content="index,follow"/>
+		<meta name="googlebot" content="index,follow"/>
+		<meta name="msnbot" content="index,follow"/>
+		<meta name="slurp" content="index,follow"/>
+		<meta name="document-type" content="Public"/>
+		<meta name="cache-control" content="Public"/>
+		<meta name="document-rating" content="General"/>
+		<meta name="document-distribution" content="Global"/>
+		
+		<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"/>
+		<link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+		<link href="{{ url_for('static', filename='bootstrap/css/bootstrap-responsive.min.css') }}" rel="stylesheet">	
+		
+	    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	    <!--[if lt IE 9]>
+	      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	    <![endif]-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+<body>
+
+
+<div class="container">
+
+<table id="StatsTable" class="display" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Message ID</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Message ID</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.status }}</td>
+                    <td>{{ item.send_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+</table>
+</div>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('#StatsTable').dataTable({
+        "aaSorting": [[0,'desc']]
+    });
+
     
-   </div>
-{% endblock %}
+} );
+
+</script>
+  
+</body>
+</html>
