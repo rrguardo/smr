@@ -7,6 +7,7 @@
 """
 
 from flaskapp import db
+from sqlalchemy.sql import func
 
 
 class Comments(db.Model):
@@ -30,9 +31,11 @@ class CountrySmsRate(db.Model):
 
 class SMS_Status(db.Model):
     """ table for track sms status."""
+    __tablename__ = 'SMS__status'
     id = db.Column(db.Integer, primary_key=True)
     status = db.Column(db.String(20))
     user_id = db.Column(db.Integer)
+    send_date = db.Column(db.DateTime, default=func.now())
 
     def __init__(self, user_id, status):
         self.user_id = user_id

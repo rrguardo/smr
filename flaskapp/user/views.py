@@ -10,8 +10,11 @@
 from flask import request, g, redirect, url_for, render_template, flash
 from flask.views import View
 from flaskapp.user.forms import RegistrationForm, LoginForm
-from flask.ext.login import login_required, logout_user
+from flask.ext.login import login_required, logout_user, current_user
 from gettext import gettext as _
+import datetime
+from flaskapp.models import SMS_Status
+from sqlalchemy import and_
 
 
 class FormView(View):
@@ -75,3 +78,11 @@ def logout():
     logout_user()
     return redirect(request.args.get("next") or '/')
 
+
+@login_required
+def stats():
+    """ User stats view"""
+    current_time = datetime.datetime.now()
+    current_time - datetime.timedelta(weeks=2)
+    result = SMS_Status.query.filter(and_(SMS_Status.user_id==current_user.id, SMS_Status.send_date > current_time))
+    return render_template('user/stats.html', data=result)

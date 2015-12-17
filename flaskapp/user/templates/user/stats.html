@@ -1,0 +1,18 @@
+{% extends "base_layout.html" %}
+
+{% block title %} {{ gettext('User Stats') }} {% endblock %}
+
+{% block section %}
+   <!-- Main hero unit for a primary marketing message or call to action -->
+   <div class="hero-unit">
+     <h2>{{ gettext('User Stats') }}</h2>
+     <p>Username: {{ current_user.username }}</p>
+
+      <ul id="navigation">
+    {% for item in data %}
+        <li>Date: {{ item.send_date }}. Status: {{ status }}</li>
+    {% endfor %}
+    </ul>
+    
+   </div>
+{% endblock %}
