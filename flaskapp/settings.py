@@ -11,8 +11,8 @@ class Config(object):
     """ Configuration base class"""
     DEBUG = False
     TESTING = False
-    #SQLALCHEMY_DATABASE_URI = 'sqlite:////home/appuser/flaskdeploy/flask.db'
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:1234567*@127.0.0.1/smr'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///flask.db'
+    #SQLALCHEMY_DATABASE_URI = 'mysql://root:1234567*@127.0.0.1/smr'
     SECRET_KEY = 'development key'
     #LOG SETTINGS
     LOG_EML_ADMINS = ['yourname@example.com']
@@ -30,8 +30,8 @@ class Config(object):
 
 class ProductionConfig(Config):
     """ Configuration for production stage"""
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:1234567*@127.0.0.1/smr'
-    #SQLALCHEMY_DATABASE_URI = 'sqlite:////home/appuser/flaskdeploy/flask.db'
+    #SQLALCHEMY_DATABASE_URI = 'mysql://root:1234567*@127.0.0.1/smr'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///flask.db'
     #LOG_FILE = '/home/appuser/flaskdeploy/flaskapp.log'
 
 
@@ -43,7 +43,7 @@ class DevelopmentConfig(Config):
 class TestingConfig(Config):
     """ Configuration for testing stage"""
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:1234567*@127.0.0.1/smr'
-    #SQLALCHEMY_DATABASE_URI = 'sqlite:////home/appuser/flaskdeploy/flask.db'
+    #SQLALCHEMY_DATABASE_URI = 'mysql://root:1234567*@127.0.0.1/smr'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///flask.db'
     #LOG_FILE = '/home/appuser/flaskdeploy/flaskapp.log'
 

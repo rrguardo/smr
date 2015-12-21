@@ -7,12 +7,14 @@
 """
 
 
-from flask import request, g, redirect, url_for, render_template, flash
+from flask import request, g, redirect, url_for, render_template,\
+    flash, jsonify
 from flask.views import View
 from flaskapp.user.forms import RegistrationForm, LoginForm
 from flask.ext.login import login_required, logout_user, current_user
 from gettext import gettext as _
 import datetime
+from flaskapp import db
 from flaskapp.models import SMS_Status
 from sqlalchemy import and_
 
@@ -68,10 +70,21 @@ class LoginView(FormView):
         flash(_(u"Logged in successfully."))
         return redirect(request.args.get("next") or url_for("user.panel"))
 
+
 @login_required
 def panel():
     """ User panel view"""
     return render_template('user/panel.html')
+
+
+@login_required
+def get_new_auth_token():
+    """ Gen a new token for the user."""
+    current_user.update_token()
+    db.session.commit()
+    flash(_(u'Auth token updated'))
+    return redirect(url_for('user.panel'))
+
 
 @login_required
 def logout():

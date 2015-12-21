@@ -10,7 +10,8 @@
 from flaskapp import db
 import datetime
 from flask.ext.login import UserMixin
-import hashlib 
+import hashlib
+import uuid
 
 
 class Group(db.Model):
@@ -37,6 +38,7 @@ class User(db.Model, UserMixin):
         self.username = username
         self.email = email
         self.password = password
+        self.auth_token = uuid.uuid4().hex
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -46,6 +48,10 @@ class User(db.Model, UserMixin):
         sh = hashlib.sha1()
         sh.update(self.password)
         self.password = sh.hexdigest()
+
+    def update_token(self):
+        """ Use this funct before save the model in database"""
+        self.auth_token = uuid.uuid4().hex
 
     def is_active(self):
         """Returns True if this is an active user - in addition to being
