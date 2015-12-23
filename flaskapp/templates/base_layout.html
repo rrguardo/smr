@@ -71,10 +71,23 @@
                   <li><a href="#">One more separated link</a></li>
                 </ul>
               </li>
+
+
+             {% if current_user.is_authenticated %}
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Panel <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ url_for('user.panel') }}">Go Panel</a></li>
+                  <li><a href="{{ url_for('user.stats') }}">Stats</a></li>
+                </ul>
+              </li>
+            {% endif %}
+            
             </ul>
             <ul class="nav pull-right" >
 	           {% if current_user.is_anonymous %}
-	           		<li><a href="{{ url_for('user.login') }}">{{ gettext('Login') }}</a></li>
+	               <li><a href="{{ url_for('user.login') }}">{{ gettext('Login') }}</a></li>
+	               <li><a href="{{ url_for('user.register') }}">{{ gettext('Join Us') }}</a></li>
 	           {% else %}
 	            	<li><a href="{{ url_for('user.logout') }}">{{ gettext('Logout') }} [{{ current_user.username }}]</a></li>
 	           {% endif %}
@@ -111,12 +124,12 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-		  <script src="{{url_for('static', filename='assets/vendor/json2.js')}}"></script>
-		  <script src="{{url_for('static', filename='assets/vendor/jquery-1.9.1.min.js')}}"></script>
-		  <script src="{{url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script>
-		  <script src="{{url_for('static', filename='assets/vendor/underscore-1.4.4.min.js')}}"></script>
-		  <script src="{{url_for('static', filename='assets/vendor/backbone-min.js')}}"></script>
-		  <script src="{{url_for('static', filename='todos.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/vendor/json2.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/vendor/jquery-1.9.1.min.js')}}"></script>
+        <script src="{{url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/vendor/underscore-1.4.4.min.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/vendor/backbone-min.js')}}"></script>
+        <script src="{{url_for('static', filename='todos.js')}}"></script>
       
 	{% endblock %}
 

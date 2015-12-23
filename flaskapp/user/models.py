@@ -53,6 +53,7 @@ class User(db.Model, UserMixin):
         """ Use this funct before save the model in database"""
         self.auth_token = uuid.uuid4().hex
 
+    @property
     def is_active(self):
         """Returns True if this is an active user - in addition to being
         authenticated, they also have activated their account, not been
@@ -61,12 +62,14 @@ class User(db.Model, UserMixin):
         course). """
         return True
 
+    @property
     def is_authenticated(self):
         """ Returns True if the user is authenticated, i.e. they have
         provided valid credentials. (Only authenticated users will fulfill
         the criteria of login_required.)"""
         return True
 
+    @property
     def is_anonymous(self):
         """ Returns True if this is an anonymous user. (Actual users should
         return False instead.)"""

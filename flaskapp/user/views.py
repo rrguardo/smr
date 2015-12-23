@@ -10,6 +10,7 @@
 from flask import request, g, redirect, url_for, render_template,\
     flash, jsonify
 from flask.views import View
+from flask_wtf import Form
 from flaskapp.user.forms import RegistrationForm, LoginForm
 from flask.ext.login import login_required, logout_user, current_user
 from gettext import gettext as _
@@ -71,19 +72,26 @@ class LoginView(FormView):
         return redirect(request.args.get("next") or url_for("user.panel"))
 
 
+class TokenView(FormView):
+    """ Toke user view"""
+
+    def get_form_class(self):
+        return Form
+
+    def get_template(self):
+        return 'user/panel.html'
+
+    def post_inst(self, form, request):
+        current_user.update_token()
+        db.session.commit()
+        flash(_(u'Auth token updated'))
+        return redirect(request.args.get("next") or url_for("user.panel"))
+
+
 @login_required
 def panel():
     """ User panel view"""
-    return render_template('user/panel.html')
-
-
-@login_required
-def get_new_auth_token():
-    """ Gen a new token for the user."""
-    current_user.update_token()
-    db.session.commit()
-    flash(_(u'Auth token updated'))
-    return redirect(url_for('user.panel'))
+    return render_template('user/panel.html', form=Form())
 
 
 @login_required

@@ -25,7 +25,8 @@ class Config(object):
     #All files cache headers
     SEND_FILE_MAX_AGE_DEFAULT = 60 * 60 * 12  # 12 hours def value
     #RECAPTCHA
-    RECAPTCHA_PUBLIC_KEY = 'recaptcha public key'
+    RECAPTCHA_PUBLIC_KEY = '6LcIsRMTAAAAAIpUA83BM9kD9AJpQTzh3qhqfwIF'
+    RECAPTCHA_PRIVATE_KEY = '6LcIsRMTAAAAABctHcyKQbM0-_cYerIUc3UGQ3dA'
 
 
 class ProductionConfig(Config):
