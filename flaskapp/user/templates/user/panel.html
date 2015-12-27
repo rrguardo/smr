@@ -5,18 +5,23 @@
 {% block section %}
    <!-- Main hero unit for a primary marketing message or call to action -->
    <div class="hero-unit">
-     <h2>{{ gettext('Flask App User Panel') }}</h2>
-     <p>Username: {{ current_user.username }}</p>
-     <p>Auth-token: {{ current_user.auth_token }}</p>
+     <h2>{{ gettext('User Panel') }}</h2>
+     <hr>
 
-<form class="form-horizontal" method="POST" action="{{ url_for('user.get_new_auth_token') }}">
-    {{ form.csrf_token }}
-    <div class="control-group">
-    <div class="controls">
-        <button type="submit" class="btn">{{ gettext('Gen New AuthToken') }}</button>
-    </div>
-    </div>
- </form>
-
+ <p>Auth-token: <strong>{{ current_user.auth_token }} </strong></p>
+    <form class="form-horizontal" method="POST" action="{{ url_for('user.get_new_auth_token') }}">
+        {{ form.csrf_token }}
+        <div class="control-group">
+        <div class="controls">
+            <button type="submit" class="btn">{{ gettext('Gen New AuthToken') }}</button>
+        </div>
+        </div>
+    </form>
+<hr>     
+     <p>
+        <a class="btn" href="{{ url_for('user.stats') }}" >View Stats</a>
+        <a class="btn" href="{{ url_for('user.upd_pw') }}" >Change Password</a>
+     </p>
+     <hr>
    </div>
 {% endblock %}

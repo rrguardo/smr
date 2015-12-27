@@ -43,43 +43,89 @@
 	</head>
 <body>
 
-<div class="navbar navbar-inverse navbar-fixed-top">
+
+<div class="navbar  navbar-fixed-top">
+
+  <a class="navbar-brand" href="{{ url_for('index') }}">
+    <img src="{{ url_for('static', filename='images/logo3.png') }}" >              
+  </a>
+
       <div class="navbar-inner">
         <div class="container">
           
-          <a class="brand" href="{{ url_for('index') }}">
-              {{ gettext('Easy SMS') }}
-          </a>
-          
           <div class="nav-collapse collapse">
             <ul class="nav">
-
              {% if current_user.is_authenticated %}
-                  <li><a href="{{ url_for('user.panel') }}">Panel</a></li>
-                  <li><a href="{{ url_for('user.stats') }}">Stats</a></li>
+                 <li class="divider-vertical"></li>
+                  <li><a href="{{ url_for('user.panel') }}">
+                  <i class="icon-wrench"></i>
+                  Panel</a></li>
+                  <li class="divider-vertical"></li>
+                  <li><a href="{{ url_for('user.add_credits') }}">
+                  <i class="icon-shopping-cart"></i>
+                  Add Credits</a></li>
+                  <li class="divider-vertical"></li>
+                  <li><a href="{{ url_for('user.stats') }}">
+                  <i class="icon-signal"></i>
+                  Stats</a></li>
             {% endif %}
 
-            <li><a href="#about">About</a></li>
+
+            <li class="divider-vertical"></li>
             <li>
-            <a href="#contact"><i class="icon-envelope icon-white"></i>
-            Contact 
-            </a></li>
-              
+                <a href="{{ url_for('api_doc') }}">
+                <i class="icon-question-sign"></i>
+                API Guide
+                </a>
+            </li>
+            <li class="divider-vertical"></li>
             
+            <li>
+                <a href="{{ url_for('about') }}">
+                <i class="icon-info-sign"></i>
+                About</a>
+            </li>
+            <li class="divider-vertical"></li>
+            <li>
+                <a href="{{ url_for('contact') }}">
+                <i class="icon-envelope"></i>
+                Contact
+                </a>
+            </li>
+            <li class="divider-vertical"></li>
             </ul>
+
+
             <ul class="nav pull-right" >
-	           {% if current_user.is_anonymous %}
-	               <li><a href="{{ url_for('user.login') }}">{{ gettext('Login') }}</a></li>
-	               <li><a href="{{ url_for('user.register') }}">{{ gettext('Join Us') }}</a></li>
-	           {% else %}
-	            	<li><a href="{{ url_for('user.logout') }}">{{ gettext('Logout') }} [{{ current_user.username }}]</a></li>
-	           {% endif %}
-	         </ul>
+
+            <li class="divider-vertical"></li>
+                {% if current_user.is_anonymous %}                
+                    <li>
+                        <a href="{{ url_for('user.login') }}"><i class="icon-user"></i>
+                         {{ gettext('Login') }}
+                         </a>
+                    </li>
+            <li class="divider-vertical"></li>
+                    <li><a href="{{ url_for('user.register') }}">
+                        <i class="icon-plus-sign"></i>
+                     {{ gettext('Join Us') }}
+                      </a>
+                    </li>
+            <li class="divider-vertical"></li>
+                {% else %}
+                    <li><a href="{{ url_for('user.logout') }}">
+                        <i class="icon-user"></i>
+                        {{ gettext('Logout') }} [{{ current_user.username }}]
+                        </a>
+                    </li>
+            <li class="divider-vertical"></li>
+                {% endif %}
+            </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
-
+<hr>
     <div class="container">
 
 

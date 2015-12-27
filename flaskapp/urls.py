@@ -13,4 +13,6 @@ from flaskapp import app
 #Set all lazy-optimized views here >>>
 url(app, '/', 'views.index')
 url(app, '/_add_numbers', 'views.add_numbers')
-
+url(app, '/api_documentation', 'views.api_doc')
+url(app, '/contact', 'views.contact')
+url(app, '/about', 'views.about')

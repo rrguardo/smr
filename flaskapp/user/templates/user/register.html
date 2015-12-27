@@ -13,15 +13,15 @@
 	{{ hforms.with_errors(form.email, placeholder=gettext('Email')) }}
 	{{ hforms.with_errors(form.password, placeholder=gettext('Password')) }}
 	
-   {{ hforms.with_errors(form.confirm, placeholder=gettext('Confirm Password')) }}
-   {{ hforms.with_errors(form.accept_tos) }}
+           {{ hforms.with_errors(form.confirm, placeholder=gettext('Confirm Password')) }}
+           {{ hforms.with_errors(form.accept_tos) }}
    
 	{{ hforms.with_errors(form.recaptcha) }}
 	
     <div class="control-group">
-	    <div class="controls">
-		    <button type="submit" class="btn">{{ gettext('Register') }}</button>
-	    </div>
+        <div class="controls">
+            <button type="submit" class="btn">{{ gettext('Register') }}</button>
+        </div>
     </div>
 </form>
 {% endblock %}

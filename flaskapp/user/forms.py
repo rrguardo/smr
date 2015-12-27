@@ -9,9 +9,8 @@
 from flask_wtf import Form, RecaptchaField
 from wtforms import BooleanField, TextField, PasswordField, validators, \
                     ValidationError
-from flaskapp import db
 from flaskapp.user.models import User, validate_user
-from flask.ext.login import login_user
+from flask.ext.login import login_user, current_user
 from gettext import gettext as _
 
 
@@ -21,27 +20,30 @@ class RegistrationForm(Form):
                                         validators.Email()])
     password = PasswordField(_(u'New Password'), [validators.Required(),
                 validators.EqualTo('confirm', 
-                                   message=_(u'Passwords must match'))])
+                                   message=_(u'Passwords must match')),
+                validators.Length(min=6, max=35)])
     confirm = PasswordField(_(u'Repeat Password'))
     accept_tos = BooleanField(_(u'I accept the TOS'), 
                               [validators.Required()])
     recaptcha = RecaptchaField()
-    
-    def validate_username(form, field):
-        """ This will also save the new user"""
+
+    def validate_email(form, field):
+        """ validate email"""
         try:
-            #ensuring other fields are valid before save to DB
-            if form.email.validate(form) and form.password.validate(form) and \
-            form.accept_tos.validate(form) and form.recaptcha.validate(form):
-                user = User(form.username.data, form.email.data, 
-                            form.password.data)
-                #storing passw hash
-                user.update_password()
-                db.session.add(user)
-                db.session.commit()
+            cnt = User.query.filter_by(email=form.email.data).count()
+            if cnt > 0:
+                raise ValidationError(_(u"Select a different email."))
         except:
-            raise ValidationError(_(u"Please select a different username \
-                                    or try with other email."))
+            raise ValidationError(_(u"Select a different email."))
+
+    def validate_username(form, field):
+        """ validate user name"""
+        try:
+            cnt = User.query.filter_by(username=form.username.data).count()
+            if cnt > 0:
+                raise ValidationError(_(u"Select a different username."))
+        except:
+            raise ValidationError(_(u"Select a different username."))
 
 
 class LoginForm(Form):
@@ -59,3 +61,26 @@ class LoginForm(Form):
         else:
             login_user(log_user)
 
+
+class PasswChangeForm(Form):
+    old_password = PasswordField(_(u'Old Password'), [validators.Required()])
+    new_password = PasswordField(_(u'New Password'), [validators.Required(),
+        validators.Length(min=6, max=35)])
+    confirm_password = PasswordField(_(u'Confirm Password'),
+        [validators.Required()])
+
+    def validate_confirm_password(form, field):
+        """Validate password confirmation."""
+        conf = field.data
+        npw = form['new_password'].data
+        if conf != npw:
+            raise ValidationError(
+                _(u"New password and confirmation don't match."))
+
+    def validate_old_password(form, field):
+        """ Validation will check old password"""
+        passw = field.data
+        user = current_user.username
+        log_user = validate_user(user, passw)
+        if log_user is None:
+            raise ValidationError(_(u"Incorrect password."))

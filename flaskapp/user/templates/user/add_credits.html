@@ -1,0 +1,31 @@
+{% extends "base_layout.html" %}
+
+{% block title %} {{ gettext('Add Credits') }} {% endblock %}
+
+{% block section %}
+ <h1>Add credits here!!</h1>
+ <div>
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="5HVLBCXG6Y4MJ">
+<table>
+<tr><td><input type="hidden" name="on0" value="Add Credits">Add Credits</td></tr><tr><td><select name="os0">
+	<option value="Small">Small $5.00 USD</option>
+	<option value="Small 2">Small 2 $20.00 USD</option>
+	<option value="Medium">Medium $50.00 USD</option>
+	<option value="Large">Large $100.00 USD</option>
+</select> </td></tr>
+</table>
+
+<input type="hidden" name="page_style" value="PayPalSimple">
+<input type="hidden" name="notify_url" value="https://www.4simple.org/store/paypal_ipn">
+
+<input type="hidden" name="currency_code" value="USD">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+
+ </div>
+{% endblock %}

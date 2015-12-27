@@ -23,8 +23,16 @@ def view_cache_per_lang():
     return "test"
 
 
-def add_numbers():
-    """ JQuery test view"""
-    a = request.args.get('a', 0, type=int)
-    b = request.args.get('b', 0, type=int)
-    return jsonify(result=a + b)
+def api_doc():
+    """ api_doc view"""
+    return render_template('api_doc/index.html')
+
+
+def contact():
+    """ api_doc view"""
+    return render_template('contact.html')
+
+
+def about():
+    """ api_doc view"""
+    return render_template('about.html')
