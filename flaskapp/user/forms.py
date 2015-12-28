@@ -38,6 +38,7 @@ class RegistrationForm(Form):
 
     def validate_username(form, field):
         """ validate user name"""
+        raise ValidationError(_(u"Register feature is Off!!"))
         try:
             cnt = User.query.filter_by(username=form.username.data).count()
             if cnt > 0:

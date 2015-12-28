@@ -20,6 +20,7 @@
 
 <input type="hidden" name="page_style" value="PayPalSimple">
 <input type="hidden" name="notify_url" value="https://www.4simple.org/store/paypal_ipn">
+<input type="hidden" name="custom" value="{{ current_user.id }}"/>
 
 <input type="hidden" name="currency_code" value="USD">
 <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
