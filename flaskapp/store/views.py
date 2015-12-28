@@ -11,6 +11,7 @@ import werkzeug.datastructures
 import flask
 from flaskapp import db
 from flaskapp.user.models import User
+from flaskapp.store.models import PayPalIPN
 from sqlalchemy import and_
 from itertools import chain
 from flask import request, g, redirect, url_for, render_template,\
@@ -30,6 +31,15 @@ def ordered_storage(f):
     return decorator
 
 
+def validation_basic(txn_id, payment_status, mc_currency,
+        receiver_email, mc_gross):
+    if payment_status == "Completed" and mc_currency == "USD" and \
+            receiver_email == "sales@4simple.org" and mc_gross > 0 and \
+            PayPalIPN.query.filter(txn_id=txn_id).count() == 0:
+        return True
+    return False
+
+
 @ordered_storage
 def paypal_ipn():
     """"PayPal IPN processing."""
@@ -38,11 +48,30 @@ def paypal_ipn():
     #req = Request(verify_string)
     response = urlopen(IPN_URLSTRING, data=verify_string)
     status = response.read()
-    print status
     if status == 'VERIFIED':
         print "PayPal transaction was verified successfully."
         # Do something with the verified transaction details.
-        payer_email =  request.form.get('payer_email')
+        payer_email = request.form.get('payer_email')
+        payment_status = request.form.get('payment_status')
+        txn_id = request.form.get('txn_id')
+        receiver_email = request.form.get('receiver_email')
+        mc_gross = float(request.form.get('mc_gross'))
+        mc_currency = request.form.get('mc_currency')
+        item_name = request.form.get('item_name')
+        item_number = request.form.get('item_number')
+        custom = int(request.form.get('custom'))
+        if validation_basic(txn_id, payment_status, mc_currency,
+            receiver_email, mc_gross):
+            ipn_rec = PayPalIPN(request.form)
+            db.session.add(ipn_rec)
+            db.session.commit()
+            # Updating balance
+            db.session.query().\
+               filter(User.id == custom).\
+               update({"balance": (User.balance + mc_gross)})
+            db.session.commit()
+            #usr = User.query.filter_by(id=custom).first()
+            #usr.balance += mc_gross
         print "Pulled {email} from transaction".format(email=payer_email)
     else:
          print 'Paypal IPN string {arg} did not validate'.format(arg=verify_string)
