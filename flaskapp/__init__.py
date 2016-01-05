@@ -64,11 +64,13 @@ import flaskapp.urls #lazy-optimized views load
 #from flaskapp.api import api_bp
 from flaskapp.api_s import api_s_bp
 from flaskapp.user import user_bp
+from flaskapp.store import store_bp
 # BluePrints register here >>
 #app.register_blueprint(api_bp, url_prefix='/api')
 app.register_blueprint(api_s_bp, url_prefix='/api')
 app.register_blueprint(user_bp, url_prefix='/user')
+app.register_blueprint(store_bp, url_prefix='/store')
+
 
 #flask-admin
 #import adminhelper
-

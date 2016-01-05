@@ -57,8 +57,6 @@ def paypal_ipn():
         receiver_email = request.form.get('receiver_email')
         mc_gross = float(request.form.get('mc_gross'))
         mc_currency = request.form.get('mc_currency')
-        item_name = request.form.get('item_name')
-        item_number = request.form.get('item_number')
         custom = int(request.form.get('custom'))
         if validation_basic(txn_id, payment_status, mc_currency,
             receiver_email, mc_gross):
@@ -76,4 +74,14 @@ def paypal_ipn():
     else:
          print 'Paypal IPN string {arg} did not validate'.format(arg=verify_string)
 
-    return jsonify({'status':'complete'})
+    return jsonify({'status': 'complete'})
+
+
+def success():
+    """PayPal IPN success page"""
+    return render_template("store/success.html")
+
+
+def cancel():
+    """PayPal IPN success page"""
+    return render_template("store/cancel.html")
