@@ -35,7 +35,7 @@ def validation_basic(txn_id, payment_status, mc_currency,
         receiver_email, mc_gross):
     if payment_status == "Completed" and mc_currency == "USD" and \
             receiver_email == "sales@4simple.org" and mc_gross > 0 and \
-            PayPalIPN.query.filter(PayPalIPN.txn_id == txn_id).count() == 0:
+            PayPalIPN.query.filter(PayPalIPN.txnid == txn_id).count() == 0:
         return True
     return False
 

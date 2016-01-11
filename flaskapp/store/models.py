@@ -25,7 +25,7 @@ class PayPalIPN(db.Model):
     createdtime = db.Column(db.DateTime)
 
     def __init__(self, data):
-        self.txnid = data.get("txnid")
+        self.txnid = data.get("txn_id")
         self.payment_amount = data.get("payment_amount")
         self.payment_status = data.get("payment_status")
         self.item_name = data.get("item_name")
