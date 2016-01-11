@@ -7,7 +7,8 @@
    <div class="hero-unit">
      <h2>{{ gettext('User Panel') }}</h2>
      <hr>
-
+<p>Balance: <strong>{{ current_user.balance }} </strong></p>
+<hr>
  <p>Auth-token: <strong>{{ current_user.auth_token }} </strong></p>
     <form class="form-horizontal" method="POST" action="{{ url_for('user.get_new_auth_token') }}">
         {{ form.csrf_token }}
