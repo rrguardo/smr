@@ -35,7 +35,7 @@ def validation_basic(txn_id, payment_status, mc_currency,
         receiver_email, mc_gross):
     if payment_status == "Completed" and mc_currency == "USD" and \
             receiver_email == "sales@4simple.org" and mc_gross > 0 and \
-            PayPalIPN.query.filter(txn_id=txn_id).count() == 0:
+            PayPalIPN.query.filter(User.txn_id=txn_id).count() == 0:
         return True
     return False
 
@@ -72,6 +72,8 @@ def paypal_ipn():
             #usr = User.query.filter_by(id=custom).first()
             #usr.balance += mc_gross
             app.logger.error("Success")
+        else:
+            app.logger.error("validation_basic fails txn_id: %s " % txn_id)
         app.logger.error("Pulled {email} from transaction".format(email=payer_email))
     else:
          app.logger.error('Paypal IPN string {arg} did not validate'.format(arg=verify_string))
