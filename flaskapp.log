@@ -1,1 +1,0 @@
-2013-12-21 19:16:37,227 ERROR: An error occurred: <class 'sqlalchemy.exc.OperationalError'> [in /home/rrg/git_repos/flask_base/flaskapp/user/models.py:84]

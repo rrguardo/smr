@@ -9,7 +9,7 @@
 from urllib import urlopen, urlencode, quote_plus
 import werkzeug.datastructures
 import flask
-from flaskapp import db
+from flaskapp import db, app
 from flaskapp.user.models import User
 from flaskapp.store.models import PayPalIPN
 from sqlalchemy import and_
@@ -18,8 +18,8 @@ from flask import request, g, redirect, url_for, render_template,\
     flash, jsonify
 
 
-IPN_URLSTRING = 'https://www.sandbox.paypal.com/cgi-bin/webscr'
-# IPN_URLSTRING = 'https://www.paypal.com/cgi-bin/webscr'
+#IPN_URLSTRING = 'https://www.sandbox.paypal.com/cgi-bin/webscr'
+IPN_URLSTRING = 'https://www.paypal.com/cgi-bin/webscr'
 IPN_VERIFY_EXTRA_PARAMS = (('cmd', '_notify-validate'),)
 
 
@@ -49,7 +49,7 @@ def paypal_ipn():
     response = urlopen(IPN_URLSTRING, data=verify_string)
     status = response.read()
     if status == 'VERIFIED':
-        print "PayPal transaction was verified successfully."
+        app.logger.error("PayPal transaction was verified successfully.")
         # Do something with the verified transaction details.
         payer_email = request.form.get('payer_email')
         payment_status = request.form.get('payment_status')
@@ -60,6 +60,7 @@ def paypal_ipn():
         custom = int(request.form.get('custom'))
         if validation_basic(txn_id, payment_status, mc_currency,
             receiver_email, mc_gross):
+            app.logger.error("Validation success!")
             ipn_rec = PayPalIPN(request.form)
             db.session.add(ipn_rec)
             db.session.commit()
@@ -70,10 +71,10 @@ def paypal_ipn():
             db.session.commit()
             #usr = User.query.filter_by(id=custom).first()
             #usr.balance += mc_gross
-        print "Pulled {email} from transaction".format(email=payer_email)
+            app.logger.error("Success")
+        app.logger.error("Pulled {email} from transaction".format(email=payer_email))
     else:
-         print 'Paypal IPN string {arg} did not validate'.format(arg=verify_string)
-
+         app.logger.error('Paypal IPN string {arg} did not validate'.format(arg=verify_string))
     return jsonify({'status': 'complete'})
 
 
