@@ -23,7 +23,7 @@ def set_loggers():
         log_file = app.config['LOG_FILE']
         #email logger
         mail_handler = SMTPHandler(log_smtp_srv, log_eml_sender,
-            log_eml_admins,'YourApplication Failed')
+            log_eml_admins, 'YourApplication Failed')
         mail_handler.setLevel(logging.ERROR)
         mail_handler.setFormatter(Formatter('''
         Message type:       %(levelname)s
@@ -31,18 +31,24 @@ def set_loggers():
         Module:             %(module)s
         Function:           %(funcName)s
         Time:               %(asctime)s
-        
+
         Message:
-        
+
         %(message)s
         '''))
-        #file logger
-        file_handler = FileHandler(log_file)
+        #file loggers
+        file_handler = FileHandler(log_file + ".error.log")
         file_handler.setLevel(logging.ERROR)
         file_handler.setFormatter(Formatter(
             '%(asctime)s %(levelname)s: %(message)s '
             '[in %(pathname)s:%(lineno)d]'
         ))
-        app.logger.addHandler(mail_handler)
+        file_handler2 = FileHandler(log_file + ".info.log")
+        file_handler2.setLevel(logging.INFO)
+        file_handler2.setFormatter(Formatter(
+            '%(asctime)s %(levelname)s: %(message)s '
+            '[in %(pathname)s:%(lineno)d]'
+        ))
+        #app.logger.addHandler(mail_handler)
         app.logger.addHandler(file_handler)
-
+        app.logger.addHandler(file_handler2)

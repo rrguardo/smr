@@ -49,6 +49,13 @@ class User(db.Model, UserMixin):
         sh.update(self.password)
         self.password = sh.hexdigest()
 
+    def update_balance(self, amount):
+        """Update the user balance + amount."""
+        db.engine.execute("""UPDATE user
+                    SET balance = balance+%s
+                    WHERE id = %s
+                    """ % (amount, self.id))
+
     def update_token(self):
         """ Use this funct before save the model in database"""
         self.auth_token = uuid.uuid4().hex
