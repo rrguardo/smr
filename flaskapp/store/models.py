@@ -33,5 +33,5 @@ class PayPalIPN(db.Model):
         self.receiver_email = data.get("receiver_email")
         self.payer_email = data.get("payer_email")
         self.custom = data.get("custom")
-        self.itemid = data.get("itemid")
+        self.itemid = data.get("item_number")
         self.createdtime = data.get("createdtime")

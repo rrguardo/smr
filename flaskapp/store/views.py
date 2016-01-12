@@ -31,9 +31,10 @@ def ordered_storage(f):
 
 
 def validation_basic(txn_id, payment_status, mc_currency,
-        receiver_email, mc_gross):
+        receiver_email, mc_gross, item_num):
     if payment_status == "Completed" and mc_currency == "USD" and \
             receiver_email == "sales@4simple.org" and mc_gross > 0 and \
+            item_num == '578' and \
             PayPalIPN.query.filter(PayPalIPN.txnid == txn_id).count() == 0:
         return True
     return False
@@ -53,16 +54,18 @@ def paypal_ipn():
         txn_id = request.form.get('txn_id')
         receiver_email = request.form.get('receiver_email')
         mc_gross = float(request.form.get('mc_gross'))
+        mc_fee = float(request.form.get('mc_fee'))
         mc_currency = request.form.get('mc_currency')
         custom = int(request.form.get('custom'))
+        item_num = '578' # str(request.form.get('item_number'))
         if validation_basic(txn_id, payment_status, mc_currency,
-            receiver_email, mc_gross):
+            receiver_email, mc_gross, item_num):
             ipn_rec = PayPalIPN(request.form)
             db.session.add(ipn_rec)
             db.session.commit()
             # Updating balance
             usr = User.query.filter_by(id=custom).first()
-            usr.update_balance(mc_gross)
+            usr.update_balance(mc_gross-mc_fee)
             app.logger.info("Success payment txn_id: %s " % txn_id)
         else:
             app.logger.error("validation_basic fails txn_id: %s " % txn_id)
