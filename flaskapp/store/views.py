@@ -57,7 +57,7 @@ def paypal_ipn():
         mc_fee = float(request.form.get('mc_fee'))
         mc_currency = request.form.get('mc_currency')
         custom = int(request.form.get('custom'))
-        item_num = '578' # str(request.form.get('item_number'))
+        item_num = '578'  # str(request.form.get('item_number'))
         if validation_basic(txn_id, payment_status, mc_currency,
             receiver_email, mc_gross, item_num):
             ipn_rec = PayPalIPN(request.form)
@@ -65,7 +65,7 @@ def paypal_ipn():
             db.session.commit()
             # Updating balance
             usr = User.query.filter_by(id=custom).first()
-            usr.update_balance(mc_gross-mc_fee)
+            usr.update_balance(mc_gross - mc_fee)
             app.logger.info("Success payment txn_id: %s " % txn_id)
         else:
             app.logger.error("validation_basic fails txn_id: %s " % txn_id)

@@ -8,7 +8,6 @@
 
 
 from flaskapp import db
-import datetime
 from sqlalchemy.sql import func
 
 
@@ -24,6 +23,7 @@ class PayPalIPN(db.Model):
     custom = db.Column(db.Integer)
     itemid = db.Column(db.String(25), nullable=True)
     createdtime = db.Column(db.DateTime, default=func.now())
+    mc_fee = db.Column(db.Float)
 
     def __init__(self, data):
         self.txnid = data.get("txn_id")
@@ -35,3 +35,4 @@ class PayPalIPN(db.Model):
         self.custom = data.get("custom")
         self.itemid = data.get("item_number")
         self.createdtime = data.get("createdtime")
+        self.mc_fee = data.get("mc_fee")

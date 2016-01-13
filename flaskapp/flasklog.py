@@ -37,13 +37,13 @@ def set_loggers():
         %(message)s
         '''))
         #file loggers
-        file_handler = FileHandler(log_file + ".error.log")
+        file_handler = FileHandler("logs/error.log")
         file_handler.setLevel(logging.ERROR)
         file_handler.setFormatter(Formatter(
             '%(asctime)s %(levelname)s: %(message)s '
             '[in %(pathname)s:%(lineno)d]'
         ))
-        file_handler2 = FileHandler(log_file + ".info.log")
+        file_handler2 = FileHandler("logs/info.log")
         file_handler2.setLevel(logging.INFO)
         file_handler2.setFormatter(Formatter(
             '%(asctime)s %(levelname)s: %(message)s '

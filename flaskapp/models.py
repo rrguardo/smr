@@ -10,12 +10,6 @@ from flaskapp import db
 from sqlalchemy.sql import func
 
 
-class Comments(db.Model):
-    """ System users model"""
-    id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String(200))
-
-
 class CountrySmsRate(db.Model):
     """ System rate model"""
     __tablename__ = 'country_sms_rate'
