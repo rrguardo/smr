@@ -6,7 +6,7 @@
     Main views.
 """
 
-from flask import request, g, render_template, jsonify
+from flask import request, g, render_template, jsonify, url_for
 from flaskapp import cache
 from flask.ext.babel import gettext
 from babelhelper import key_prefix_babelcache
@@ -14,7 +14,7 @@ from babelhelper import key_prefix_babelcache
 
 def index():
     """ Index view"""
-    return render_template('home.html', title=gettext(u'Home Page'))
+    return render_template('home.html', title=gettext('Home Page'))
 
 
 @cache.cached(timeout=50, key_prefix=key_prefix_babelcache)
@@ -25,7 +25,8 @@ def view_cache_per_lang():
 
 def api_doc():
     """ api_doc view"""
-    return render_template('api_doc/index.html')
+    api_url = "https://easysms.4simple.org/api/"
+    return render_template('api_doc/index.html', api_url=api_url)
 
 
 def contact():

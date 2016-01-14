@@ -8,37 +8,91 @@
      <h2>{{ gettext('HTTPS API Documentation') }}</h2>
      <hr>
 
-<p>
-In order to use the API you should have and account. The required credentials
-for the API usage are the "user id" and "authentication token". You can locate
-this info at the users panel after you login in the site.
-</p>
+    <p>
+    In order to use the API you should have and account. The required credentials
+    for the API usage are the "user id" and "authentication token". You can locate
+    this info at the users panel after you login in the site.
+    </p>
+    
 
     <div class="row">
-      <div class="span10">
-            <h3>How send a SMS</h3>
-            <p>
-            Do a HTTP POST request to this API url "/sms" using the following
-            HTTP POST vars.
-            <ul>
-                <li>
-                 <b>user_id</b><br> Your user account id, located at user panel.
-                </li>
-                <li>
-                 <b>auth_token</b><br> Your user account "authentication token",
-                 located at user panel.
-                </li>
-                <li>
-                 <b>to</b><br> The phone number where you will send the SMS.
-                </li>
-                <li>
-                 <b>body</b><br> The SMS text message to send.
-                </li>
-            </ul>
-            </p>
+        <h3>How send a SMS</h3>
+        <p>
+            Do a HTTP POST request to the API url <strong>{{ api_url }}sms</strong> 
+            using the following HTTP POST vars.
+        </p>
+    
+      <div class="span5">
+            <dl>
+                <dt>user_id</dt>
+                <dd>
+                    Your user account id, located at user panel.
+                </dd>
+                
+                <dt>auth_token</dt>
+                <dd>
+                    Your user account "authentication token", located at user panel.
+                </dd>
+                
+                <dt>to</dt>
+                <dd>
+                    The phone number where you will send the SMS.
+                </dd>
+                
+                <dt>body</dt>
+                <dd>
+                    The SMS text message to send.
+                </dd>
+            </dl>
       </div>
     </div>
 
-   </div>
-   
+
+    <div class="row">
+        <h5>HTTP FORM example</h5>
+
+        <pre class="pre-scrollable">
+&lt;form action=&quot;{{ api_url }}sms&quot; method=&quot;post&quot;&gt;
+
+    &lt;label&gt;User ID:
+    &lt;input type=&quot;text&quot; name=&quot;user_id&quot;&gt;
+    &lt;/label&gt;
+    
+    &lt;br&gt;&lt;/br&gt;
+    &lt;label&gt;Auth Token:
+    &lt;input type=&quot;text&quot; name=&quot;auth_token&quot;&gt;
+    &lt;/label&gt;
+    
+    &lt;br&gt;&lt;/br&gt;
+    &lt;label&gt;Receiver phone number:
+    &lt;input type=&quot;text&quot; name=&quot;to&quot;&gt;
+    &lt;/label&gt;
+    
+    &lt;br&gt;&lt;/br&gt;
+    &lt;label&gt;Message:&lt;/label&gt;
+    &lt;input type=&quot;text&quot; name=&quot;body&quot;&gt;
+    &lt;/label&gt;
+    
+    &lt;br&gt;&lt;/br&gt;
+    &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+    
+&lt;/form&gt;
+        </pre>
+    </div>
+
+    <div class="row">
+    <h3>The server response will be a json like:</h3>
+
+    <dl>
+      <dt>['success': 'ok', 'pid': 123]</dt>
+      <dd>
+       The <strong>success</strong> key is returned when message was delivey ok. The processing id <strong>pid</strong> returned
+       can be used for track the SMS message status. 
+      </dd>
+    </dl>
+
+    
+    </div>
+
+</div>
 {% endblock %}

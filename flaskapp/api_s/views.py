@@ -96,7 +96,7 @@ class Auth_API:
                 sms_job = json.dumps(sms_job)
                 if not process_sms(sms_job):
                     return jsonify({'error': 'queue error'})
-                return jsonify({'success': 'message delivered', 'pid': st.id})
+                return jsonify({'success': 'ok', 'pid': st.id})
             else:
                 return jsonify({'error': 'low balance'})
         else:
