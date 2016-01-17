@@ -57,9 +57,9 @@ class Auth_API:
                     user_id=self._user.id).first()
                 return jsonify({'status': sm.status})
             except:
-                return jsonify({'error': 'pid error'})
+                return jsonify({'error': 'Pid error'})
         else:
-            return jsonify({'error': 'login-error'})
+            return jsonify({'error': 'Login error'})
 
     def send_sms(self):
         """
@@ -79,10 +79,10 @@ class Auth_API:
             if not message_:
                 return jsonify({'error': 'Message required!'})
             if len(message_) > 160:
-                return jsonify({'error': 'message with more than 160 chars'})
+                return jsonify({'error': 'Message with more than 160 chars'})
             rate_ = out_sms_rate(to_)
             if rate_ <= 0:
-                return jsonify({'error': 'invalid phone number format.'})
+                return jsonify({'error': 'Invalid phone number format.'})
             if rate_ > 0 and rate_ < self._user.balance:
                 # discount balance before send sms
                 db.engine.execute("""UPDATE user
@@ -98,9 +98,9 @@ class Auth_API:
                     return jsonify({'error': 'queue error'})
                 return jsonify({'success': 'ok', 'pid': st.id})
             else:
-                return jsonify({'error': 'low balance'})
+                return jsonify({'error': 'Low balance'})
         else:
-            return jsonify({'error': 'login-error'})
+            return jsonify({'error': 'Login error'})
 
 
 def process_sms(sms_job):

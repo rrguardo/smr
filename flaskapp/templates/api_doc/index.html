@@ -3,7 +3,7 @@
 {% block title %} {{ gettext('API Documentation') }} {% endblock %}
 
 {% block section %}
-   <!-- Main hero unit for a primary marketing message or call to action -->
+
    <div class="hero-unit">
      <h2>{{ gettext('HTTPS API Documentation') }}</h2>
      <hr>
@@ -13,7 +13,8 @@
     for the API usage are the "user id" and "authentication token". You can locate
     this info at the users panel after you login in the site.
     </p>
-    
+
+   <hr>
 
     <div class="row">
         <h3>How send a SMS</h3>
@@ -84,15 +85,185 @@
     <h3>The server response will be a json like:</h3>
 
     <dl>
-      <dt>['success': 'ok', 'pid': 123]</dt>
+      <dt>{'success': 'ok', 'pid': 123}</dt>
       <dd>
-       The <strong>success</strong> key is returned when message was delivey ok. The processing id <strong>pid</strong> returned
-       can be used for track the SMS message status. 
+       The <strong>success</strong> key is returned when message was delivery ok to our system.
+          The processing id <strong>pid</strong> returned can be used for track the SMS message status.
+      </dd>
+
+      <dt>
+          {'error': 'error description'}
+      </dt>
+      <dd>
+          The <strong>error</strong> key is returned if something fail while the message is posted.
+          The value for <strong>error</strong> key, will contains details with the reason for the fail.
+          Some of the possible error details returned are:
+          <ul>
+            <li>Login error</li>
+            <li>Low balance</li>
+            <li>Destination number required!</li>
+            <li>Message required!</li>
+            <li>Message with more than 160 chars</li>
+          </ul>
       </dd>
     </dl>
-
-    
     </div>
+
+    <hr>
+
+    <div class="row">
+    <h3>How know your account available credits/balance.</h3>
+    <p>
+        Do a HTTP POST request to the API url <strong>{{ api_url }}balance</strong>
+        using the following HTTP POST vars.
+    </p>
+
+      <dl>
+        <dt>user_id</dt>
+        <dd>
+            Your user account id, located at user panel.
+        </dd>
+
+        <dt>auth_token</dt>
+        <dd>
+            Your user account "authentication token", located at user panel.
+        </dd>
+      </dl>
+    </div>
+
+    <div class="row">
+    <h3>The server response will be a json like:</h3>
+
+    <dl>
+      <dt>{'balance': 20.0}</dt>
+      <dd>
+       The <strong>balance</strong> key is returned with the value set as the user credits/balance.
+      </dd>
+
+      <dt>
+          {'error': 'Login error'}
+      </dt>
+      <dd>
+          The <strong>error</strong> key is returned if authentication info (user id or token) is wrong.
+      </dd>
+    </dl>
+    </div>
+
+    <div class="row">
+        <h5>HTTP FORM example</h5>
+
+        <pre class="pre-scrollable">
+&lt;form action=&quot;{{ api_url }}balance&quot; method=&quot;post&quot;&gt;
+
+    &lt;label&gt;User ID:
+    &lt;input type=&quot;text&quot; name=&quot;user_id&quot;&gt;
+    &lt;/label&gt;
+
+    &lt;br&gt;&lt;/br&gt;
+    &lt;label&gt;Auth Token:
+    &lt;input type=&quot;text&quot; name=&quot;auth_token&quot;&gt;
+    &lt;/label&gt;
+
+    &lt;br&gt;&lt;/br&gt;
+    &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+
+&lt;/form&gt;
+        </pre>
+    </div>
+
+    <div class="row">
+    <h3>How verify sms sent status.</h3>
+    <p>
+        Do a HTTP POST request to the API url <strong>{{ api_url }}status</strong>
+        using the following HTTP POST vars.
+    </p>
+
+      <dl>
+        <dt>user_id</dt>
+        <dd>
+            Your user account id, located at user panel.
+        </dd>
+
+        <dt>auth_token</dt>
+        <dd>
+            Your user account "authentication token", located at user panel.
+        </dd>
+
+      <dt>pid</dt>
+        <dd>
+            The processing id <strong>pid</strong> returned when you sent the sms.
+        </dd>
+      </dl>
+    </div>
+
+    <div class="row">
+    <h3>The server response will be a json like:</h3>
+
+    <dl>
+      <dt>{'status': 'queued'}</dt>
+      <dd>
+       The <strong>status</strong> key is returned with the value set as the sms current status.
+       Possible status values are:
+          <ul>
+              <li>
+                  <strong>queued</strong> When the sms is in the processing queue waiting to be delivered.
+              </li>
+              <li>
+                  <strong>success-delivered</strong> The sms was delivered successful.
+              </li>
+              <li>
+                  <strong>failed</strong> The sms delivery fails.
+              </li>
+          </ul>
+      </dd>
+
+      <dt>
+          {'error': 'error description'}
+      </dt>
+      <dd>
+          The <strong>error</strong> key is returned if you submit incorrect credentials or use an invalid
+          processing id <strong>pid</strong>.
+          Some of the possible error details returned are:
+          <ul>
+            <li>
+                <strong>Login error</strong> Incorrect credentials provided.
+            </li>
+            <li>
+                <strong>Pid error</strong> Incorrect processing id <strong>pid</strong> provided.
+            </li>
+          </ul>
+      </dd>
+
+    </dl>
+    </div>
+
+    <div class="row">
+        <h5>HTTP FORM example</h5>
+
+        <pre class="pre-scrollable">
+&lt;form action=&quot;{{ api_url }}status&quot; method=&quot;post&quot;&gt;
+
+    &lt;label&gt;User ID:
+    &lt;input type=&quot;text&quot; name=&quot;user_id&quot;&gt;
+    &lt;/label&gt;
+
+    &lt;br&gt;&lt;/br&gt;
+    &lt;label&gt;Auth Token:
+    &lt;input type=&quot;text&quot; name=&quot;auth_token&quot;&gt;
+    &lt;/label&gt;
+
+    &lt;br&gt;&lt;/br&gt;
+    &lt;label&gt;Processing ID:
+    &lt;input type=&quot;text&quot; name=&quot;pid&quot;&gt;
+    &lt;/label&gt;
+
+    &lt;br&gt;&lt;/br&gt;
+    &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+
+&lt;/form&gt;
+        </pre>
+    </div>
+
 
 </div>
 {% endblock %}

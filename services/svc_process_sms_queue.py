@@ -51,11 +51,11 @@ def queue_callback(ch, method, properties, body):
         if not sresult:
             proxy_inc_fails(sprox)
             print "SMS Proxy %s fails" % sprox.__name__
-            sm.status = "failed-by-sprox"
+            sm.status = "failed-r1"
             db.session.add(sm)
             db.session.commit()
         else:
-            sm.status = "success-delivery"
+            sm.status = "success-delivered"
             db.session.add(sm)
             db.session.commit()
     except:
