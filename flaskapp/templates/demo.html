@@ -1,0 +1,52 @@
+
+<link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+<script src="{{url_for('static', filename='assets/vendor/jquery-1.9.1.min.js')}}"></script>
+<script src="{{url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script>
+
+
+<h3>Send SMS Form</h3>
+<hr>
+<form class="form-horizontal" action="https://easysms.4simple.org/api/sms" method="post">
+
+  <div class="control-group">
+    <label class="control-label" for="inputUserID">User ID</label>
+    <div class="controls">
+      <input type="text" id="inputUserID" placeholder="User ID"
+             name="user_id" value="{{ current_user.id }}" readonly >
+    </div>
+  </div>
+
+
+  <div class="control-group">
+    <label class="control-label" for="inputAT">Auth Token</label>
+    <div class="controls">
+      <input type="text" id="inputAT" placeholder="Authentication Token"
+             name="auth_token" value="{{ current_user.auth_token }}" readonly >
+    </div>
+  </div>
+
+
+  <div class="control-group">
+    <label class="control-label" for="inputTO">To</label>
+    <div class="controls">
+      <input type="text" id="inputTO" placeholder="Receiver phone number."
+             name="to" >
+    </div>
+  </div>
+
+
+  <div class="control-group">
+    <label class="control-label" for="inputMSG">Message</label>
+    <div class="controls">
+        <textarea rows="3" id="inputMSG" placeholder="SMS message content." name="body" ></textarea>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn">Send SMS</button>
+    </div>
+  </div>
+
+</form>

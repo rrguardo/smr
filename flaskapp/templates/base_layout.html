@@ -38,15 +38,19 @@
 
 		<title>{% block title %} {{ title }} {% endblock %}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
+
+
+        <script src="{{url_for('static', filename='assets/vendor/jquery-1.9.1.min.js')}}"></script>
+        <script src="{{url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script>
+
 	{% endblock %}
 	</head>
 <body>
 
 
-<div class="navbar  navbar-fixed-top">
+<div class="navbar  navbar-fixed-top" style="background-color: white;">
 
-  <a class="navbar-brand" href="{{ url_for('index') }}">
+  <a class="navbar-brand" href="{{ url_for('index') }}" >
     <img src="{{ url_for('static', filename='images/logo3.png') }}" >              
   </a>
 
@@ -79,12 +83,13 @@
                 </a>
             </li>
             <li class="divider-vertical"></li>
-            
             <li>
-                <a href="{{ url_for('about') }}">
-                <i class="icon-info-sign"></i>
-                About</a>
+                <a href="{{ url_for('rates') }}">
+                <i class="icon-tasks"></i>
+                Rates
+                </a>
             </li>
+
             <li class="divider-vertical"></li>
             <li>
                 <a href="{{ url_for('contact') }}">
@@ -150,11 +155,6 @@
     </div> <!-- /container -->
 
 	{% block extra_js_css %}
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-        <script src="{{url_for('static', filename='assets/vendor/jquery-1.9.1.min.js')}}"></script>
-        <script src="{{url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script>
 	{% endblock %}
 
 	{% block js_templates %}

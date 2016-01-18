@@ -10,6 +10,8 @@ from flask import request, g, render_template, jsonify, url_for
 from flaskapp import cache
 from flask.ext.babel import gettext
 from babelhelper import key_prefix_babelcache
+from flask.ext.login import login_required
+from flaskapp.models import CountrySmsRate
 
 
 def index():
@@ -37,3 +39,16 @@ def contact():
 def about():
     """ api_doc view"""
     return render_template('about.html')
+
+
+@login_required
+def demo():
+    """ demo view"""
+    return render_template('demo.html')
+
+
+def rates():
+    """ rates view"""
+    rates = CountrySmsRate.query.all()
+    return render_template('rates.html', rates=rates)
+

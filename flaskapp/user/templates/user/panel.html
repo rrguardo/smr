@@ -5,24 +5,76 @@
 {% block section %}
    <!-- Main hero unit for a primary marketing message or call to action -->
    <div class="hero-unit">
-     <h2>{{ gettext('User Panel') }}</h2>
-     <hr>
-<p>Balance: <strong>{{ current_user.balance }} </strong></p>
+     <h2>
+         {{ gettext('User Panel') }}
+         <small class="text-info pull-right" >
+             Credits/Balance: <strong>{{'%0.2f' % current_user.balance|float}} USD</strong>
+         </small>
+     </h2>
+
 <hr>
- <p>Auth-token: <strong>{{ current_user.auth_token }} </strong></p>
-    <form class="form-horizontal" method="POST" action="{{ url_for('user.get_new_auth_token') }}">
+
+ <p> Update EasySMS website password here:
+    <a class="btn btn-primary" href="{{ url_for('user.upd_pw') }}" >
+        <i class="icon-lock icon-white"></i>
+        Change Password
+    </a>
+ </p>
+ <hr>
+
+<h3>API Credentials</h3>
+<dl class="dl-horizontal" >
+
+    <dt>
+        User ID:
+    </dt>
+    <dd>
+        {{ current_user.id }}
+    </dd>
+
+    <dt>
+        Authentication Token:
+    </dt>
+    <dd>
+        {{ current_user.auth_token }}
+    </dd>
+
+    <br>
+
+    <form class="form-horizontal" id="form_gen"  method="POST" action="{{ url_for('user.get_new_auth_token') }}">
         {{ form.csrf_token }}
         <div class="control-group">
         <div class="controls">
-            <button type="submit" class="btn">{{ gettext('Gen New AuthToken') }}</button>
+            <button type="submit" class="btn btn-primary" id="gen_new">
+                <i class="icon-lock icon-white"></i>
+                {{ gettext('Gen New AuthToken') }}
+            </button>
         </div>
         </div>
     </form>
-<hr>     
-     <p>
-        <a class="btn" href="{{ url_for('user.stats') }}" >View Stats</a>
-        <a class="btn" href="{{ url_for('user.upd_pw') }}" >Change Password</a>
-     </p>
-     <hr>
-   </div>
+</dl>
+
+<hr>
+
+<iframe src="{{ url_for('demo') }}" width="500px" height="400px"  >
+
+</iframe>
+
+<hr>
+</div>
+
+<script>
+
+$(function() {
+   $("#gen_new").click(function(){
+      if (confirm('Confirm you request new "Authentication Token"')){
+         $('form#form_gen').submit();
+      }else{
+        return false;
+      }
+   });
+});
+
+</script>
+
 {% endblock %}

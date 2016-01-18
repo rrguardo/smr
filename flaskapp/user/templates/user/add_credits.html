@@ -3,7 +3,13 @@
 {% block title %} {{ gettext('Add Credits') }} {% endblock %}
 
 {% block section %}
- <h1>Add credits here!!</h1>
+ <h2>
+	 Add/Buy credits for your account here.
+     <small class="text-info pull-right" >
+         Credits/Balance: <strong>{{'%0.2f' % current_user.balance|float}} USD</strong>
+     </small>
+
+ </h2>
  <div>
 
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -28,7 +34,14 @@
 </form>
 
 <hr>
-<h1>Custom Credits Amount<h1>
+<p>
+    Payments are processed automatically. Few minutes after your payment success, your credits should be
+    available at your account.
+</p>
+
+<hr>
+
+<h2>Custom Credits Amount<h2>
 
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 
