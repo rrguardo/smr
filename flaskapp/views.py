@@ -50,5 +50,5 @@ def demo():
 def rates():
     """ rates view"""
     rates = CountrySmsRate.query.all()
-    return render_template('rates.html', rates=rates)
+    return render_template('rates.html', data=rates)
 

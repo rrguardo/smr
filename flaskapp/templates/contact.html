@@ -4,13 +4,40 @@
 
 {% block section %}
 
-      <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
-        <h1>{{ gettext('Contact Us') }}</h1>
-        <p>{{ gettext('This is a template for a simple marketing or informational website. It includes a large 
-        callout called the hero unit and three supporting pieces of content. Use it as a starting point to create 
-        something more unique.') }}</p>
-        <p><a class="btn btn-primary btn-large">{{ gettext('Learn more') }} &raquo;</a></p>
+        <h2>{{ gettext('Contact Us') }}</h2>
+        <hr>
+
+        <p>
+            For any question related to our services, you can contact us using the form below.
+        </p>
+
+        <hr>
+        <form class="form-horizontal" action="" method="post">
+
+          <div class="control-group">
+            <label class="control-label" for="inputUserID">User ID</label>
+            <div class="controls">
+              <input type="text" id="inputUserID" placeholder="User ID"
+                     name="user_id" value="{{ current_user.id }}"
+                     {% if not current_user.is_anonymous %} readonly {% endif %}
+                      >
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="inputMSG">Message</label>
+            <div class="controls">
+                <textarea rows="5" id="inputMSG" placeholder="Place your questions or any claim here." name="body" ></textarea>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="controls">
+              <button type="submit" class="btn">Contact Support</button>
+            </div>
+          </div>
+        </form>
       </div>
 
 {% endblock %}

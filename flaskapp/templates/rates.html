@@ -1,11 +1,58 @@
 {% extends "base_layout.html" %}
 
-{% block title %} {{ gettext('Rates') }} {% endblock %}
+{% block title %} {{ gettext('SMS Rates') }} {% endblock %}
 
 {% block section %}
 
-<div class="hero-unit">
-    <h1>{{ gettext('SMS Rates') }}</h1>
+<script src="{{ url_for('static', filename='datatables/jquery-1.11.3.min.js') }}"></script>
+<script src="{{ url_for('static', filename='datatables/jquery.dataTables.min.js') }}"></script>
+<link rel="stylesheet" type="text/css"
+href="{{ url_for('static', filename='datatables/jquery.dataTables.min.css') }}">
+
+<script src="{{url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script>
+
+
+<div class="container">
+<h2>SMS Rates Table</h2>
+
+<table id="StatsTable" class="display" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>Credit required to send one SMS.</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Country</th>
+                <th>SMS Rate</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                    <td>{{ item.country_name }}</td>
+                    <td>{{ item.fix_rate }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+</table>
 </div>
 
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('#StatsTable').dataTable({
+        "aaSorting": [[0,'desc']]
+    });
+
+
+} );
+
+</script>
+
+{% endblock %}
+
+
+{% block extra_js_css %}
 {% endblock %}

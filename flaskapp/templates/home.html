@@ -5,10 +5,30 @@
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
         <h1>{{ gettext('Easy SMS for your software!') }}</h1>
-        <p>{{ gettext('This is a template for a simple marketing or informational website. It includes a large 
-        callout called the hero unit and three supporting pieces of content. Use it as a starting point to create 
-        something more unique.') }}</p>
-        <p><a class="btn btn-primary btn-large">{{ gettext('Learn more') }} &raquo;</a></p>
+        <p>
+            EasySMS if a simple solution for allow add SMS messages to your software.
+            By just doing a HTTPS POST to our API url, your mobile/web or desktop software will be able to send
+            SMS messages.
+
+      <h3>EasySMS features</h3>
+      <ul>
+          <li>
+              Simple HTTP POST API to deliver SMS from your applications in few steps.
+          </li>
+          <li>
+              Secure information. EasySMS API run over HTTPS, this mean that all data related to messages
+              are protected and transferred encrypted.
+          </li>
+          <li>
+              Users panel with SMS delivered stats, API credentials management and more.
+          </li>
+          <li>
+              Simple and fast payment using <strong>PayPal</strong>.
+          </li>
+      </ul>
+        </p>
+          <br>
+        <p><a class="btn btn-primary btn-large" href="{{ url_for('user.register') }}" >{{ gettext('Joint Us') }} &raquo;</a></p>
       </div>
 
 {% endblock %}
