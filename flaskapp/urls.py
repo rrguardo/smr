@@ -14,7 +14,7 @@ from flaskapp import app
 url(app, '/', 'views.index')
 url(app, '/_add_numbers', 'views.add_numbers')
 url(app, '/api_documentation', 'views.api_doc')
-url(app, '/contact', 'views.contact')
+url(app, '/contact', 'views.contact', methods=["GET", "POST"])
 url(app, '/about', 'views.about')
 url(app, '/demo', 'views.demo')
 url(app, '/rates', 'views.rates')

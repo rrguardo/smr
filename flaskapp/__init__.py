@@ -17,12 +17,16 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.cache import Cache
 from flask.ext.babel import Babel
 from flask.ext.login import LoginManager
+from flask_mail import Mail
 
 
 # create application
 app = Flask(__name__)
 #default app setting
 app.config.from_object('flaskapp.settings.TestingConfig')
+
+#email
+mail = Mail(app)
 
 #babel
 babel = Babel(app)

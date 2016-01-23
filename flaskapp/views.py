@@ -6,12 +6,14 @@
     Main views.
 """
 
-from flask import request, g, render_template, jsonify, url_for
-from flaskapp import cache
+from flask import request, g, render_template, jsonify, url_for, flash, redirect
+from flaskapp import cache, mail
 from flask.ext.babel import gettext
 from babelhelper import key_prefix_babelcache
 from flask.ext.login import login_required
 from flaskapp.models import CountrySmsRate
+from flaskapp.forms import ContactForm
+from flask_mail import Message
 
 
 def index():
@@ -33,7 +35,15 @@ def api_doc():
 
 def contact():
     """ api_doc view"""
-    return render_template('contact.html')
+    form = ContactForm(request.form)
+    if request.method == 'POST' and form.validate():
+        msg = Message("CONTACT EasySMS: " + form.subject.data,
+                      ["support@4simple.org"],
+                      form.message.data)
+        mail.send(msg)
+        flash('Request submitted successfully, thanks for your feedback.')
+        return redirect(url_for('contact'))
+    return render_template('contact.html', form=form)
 
 
 def about():

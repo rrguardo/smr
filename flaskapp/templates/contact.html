@@ -1,43 +1,36 @@
 {% extends "base_layout.html" %}
-
 {% block title %} {{ gettext('Contact') }} {% endblock %}
-
+<hr>
 {% block section %}
-
       <div class="hero-unit">
-        <h2>{{ gettext('Contact Us') }}</h2>
-        <hr>
-
+        <h2>{{ gettext('Contact Form') }}</h2>
         <p>
             For any question related to our services, you can contact us using the form below.
         </p>
-
         <hr>
-        <form class="form-horizontal" action="" method="post">
+     <form class="form-horizontal" method="POST" action="">
+        {{ form.csrf_token }}
+        {% import 'macros/forms.html' as hforms %}
 
-          <div class="control-group">
-            <label class="control-label" for="inputUserID">User ID</label>
+        {{ hforms.with_errors(form.subject, placeholder=gettext('Subject')) }}
+        {{ hforms.with_errors(form.message, placeholder=gettext('Message'), rows=7) }}
+        {{ hforms.with_errors(form.recaptcha) }}
+        <div class="control-group">
             <div class="controls">
-              <input type="text" id="inputUserID" placeholder="User ID"
-                     name="user_id" value="{{ current_user.id }}"
-                     {% if not current_user.is_anonymous %} readonly {% endif %}
-                      >
+                <button type="submit" class="btn">{{ gettext('Submit') }}</button>
             </div>
-          </div>
+        </div>
+     </form>
+    </div>
 
-          <div class="control-group">
-            <label class="control-label" for="inputMSG">Message</label>
-            <div class="controls">
-                <textarea rows="5" id="inputMSG" placeholder="Place your questions or any claim here." name="body" ></textarea>
-            </div>
-          </div>
+<style>
+    input#subject{
+        width: 500px;
+    }
 
-          <div class="control-group">
-            <div class="controls">
-              <button type="submit" class="btn">Contact Support</button>
-            </div>
-          </div>
-        </form>
-      </div>
+    textarea#message{
+        width: 500px;
+    }
+</style>
 
 {% endblock %}

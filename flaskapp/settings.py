@@ -4,6 +4,15 @@
     ~~~~~~~~~~~~~~~~~
 
     Flask application settings.
+
+    Mandril settings:
+    email: admin@4simple.org
+    passw: #CvTs8v*SL
+
+    Host smtp.mandrillapp.com
+    Port 587
+    SMTP Username: admin@4simple.org
+    SMTP Password: B-mP6-lh9Nx71OWqybkM4g
 """
 
 
@@ -27,6 +36,14 @@ class Config(object):
     #RECAPTCHA
     RECAPTCHA_PUBLIC_KEY = '6LcIsRMTAAAAAIpUA83BM9kD9AJpQTzh3qhqfwIF'
     RECAPTCHA_PRIVATE_KEY = '6LcIsRMTAAAAABctHcyKQbM0-_cYerIUc3UGQ3dA'
+
+    MAIL_SERVER = 'smtp.mandrillapp.com'
+    MAIL_PORT = 587
+    MAIL_USE_SSL = True
+    MAIL_USERNAME = 'admin@4simple.org'
+    MAIL_PASSWORD = 'B-mP6-lh9Nx71OWqybkM4g'
+    MAIL_DEFAULT_SENDER = 'noreply@4simple.org'
+
 
 
 class ProductionConfig(Config):
