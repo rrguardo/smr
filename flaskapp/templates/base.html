@@ -1,0 +1,26 @@
+{% extends "base_layout.html" %}
+
+{% block section %}
+
+    <!-- In-lining styles to avoid needing a separate .css file -->
+    <style>
+        hr { border-color: #cccccc; margin: 0; }
+        .no-margins { margin: 0px; }
+        .with-margins { margin: 10px; }
+        .col-centered { float: none; margin: 0 auto; }
+    </style>
+
+    {% block body %}
+
+    {% block menu %}
+    {% endblock %}
+    <hr class="no-margins"/>
+
+    <div id="main-div" class="with-margins">
+
+    {% block main %}{% block content %}{% endblock %}{% endblock %}
+    </div>
+
+    <br/>
+    {% endblock %}
+{% endblock %}

@@ -2,8 +2,8 @@
 <html lang="en">
 	<head>
 	{% block head %}
-		<meta charset="utf-8" />
-		<meta name="keywords" content="HTML5, CSS3, JS" />
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="keywords" content="HTML5, CSS3, JS" />
 		<meta name="description" content="Page description here" />
 		<meta name="abstract" content="An abstract with page description here"/>
 		<meta http-equiv="Content-Language" content="es"/>
@@ -22,125 +22,139 @@
 		
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='default.css') }}">
 
-		<link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-		<style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      </style>
-		<link href="{{ url_for('static', filename='bootstrap/css/bootstrap-responsive.min.css') }}" rel="stylesheet">	
-		
-	    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-	    <!--[if lt IE 9]>
-	      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	    <![endif]-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+              integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+              integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+                integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous">
+        </script>
+
+	    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
+          <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
+        <![endif]-->
 
 		<title>{% block title %} {{ title }} {% endblock %}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-        <script src="{{url_for('static', filename='assets/vendor/jquery-1.9.1.min.js')}}"></script>
-        <script src="{{url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script>
 
 	{% endblock %}
 	</head>
 <body>
 
 
-<div class="navbar  navbar-fixed-top" style="background-color: white;">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{{ url_for('index') }}" style="padding:0 !important; height: 50px" >
+        <img alt="Brand" src="{{ url_for('static', filename='images/logo3.png') }}" height="50px" >
+      </a>
+    </div>
 
-  <a class="navbar-brand" href="{{ url_for('index') }}" >
-    <img src="{{ url_for('static', filename='images/logo3.png') }}" >              
-  </a>
-
-      <div class="navbar-inner">
-        <div class="container">
-          
-          <div class="nav-collapse collapse">
-            <ul class="nav">
+    <ul class="nav navbar-nav">
              {% if current_user.is_authenticated %}
-                 <li class="divider-vertical"></li>
+
                   <li><a href="{{ url_for('user.panel') }}">
-                  <i class="icon-wrench"></i>
+                  <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
                   Panel</a></li>
-                  <li class="divider-vertical"></li>
+
                   <li><a href="{{ url_for('user.add_credits') }}">
-                  <i class="icon-shopping-cart"></i>
+                  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                   Add Credits</a></li>
-                  <li class="divider-vertical"></li>
+
                   <li><a href="{{ url_for('user.stats') }}">
-                  <i class="icon-signal"></i>
+                      <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
                   Stats</a></li>
             {% endif %}
 
 
-            <li class="divider-vertical"></li>
             <li>
                 <a href="{{ url_for('api_doc') }}">
-                <i class="icon-question-sign"></i>
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
                 API Guide
                 </a>
             </li>
-            <li class="divider-vertical"></li>
             <li>
                 <a href="{{ url_for('rates') }}">
-                <i class="icon-tasks"></i>
+                <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
                 Rates
                 </a>
             </li>
 
-            <li class="divider-vertical"></li>
+
             <li>
                 <a href="{{ url_for('contact') }}">
-                <i class="icon-envelope"></i>
+                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
                 Contact
                 </a>
             </li>
-            <li class="divider-vertical"></li>
+
             </ul>
 
 
-            <ul class="nav pull-right" >
+            <ul class="nav navbar-nav navbar-right" >
 
-            <li class="divider-vertical"></li>
-                {% if current_user.is_anonymous %}                
+
+                {% if current_user.is_anonymous %}
                     <li>
-                        <a href="{{ url_for('user.login') }}"><i class="icon-user"></i>
+                        <a href="{{ url_for('user.login') }}">
+                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                          {{ gettext('Login') }}
                          </a>
                     </li>
-            <li class="divider-vertical"></li>
+
                     <li><a href="{{ url_for('user.register') }}">
-                        <i class="icon-plus-sign"></i>
+                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                      {{ gettext('Join Us') }}
                       </a>
                     </li>
-            <li class="divider-vertical"></li>
+
                 {% else %}
                     <li><a href="{{ url_for('user.logout') }}">
-                        <i class="icon-user"></i>
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                         {{ gettext('Logout') }} [{{ current_user.username }}]
                         </a>
                     </li>
-            <li class="divider-vertical"></li>
+
                 {% endif %}
             </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
+  </div>
+</nav>
+
+
 <hr>
     <div class="container">
 
+    {# One-time system messages called Flash messages #}
+    {% block flash_messages %}
+        {%- with messages = get_flashed_messages(with_categories=true) -%}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category=='error' %}
+                        {% set category='danger' %}
+                    {% elif category=='message' %}
+                        {% set category='info' %}
+                    {% endif %}
+                    <div class="alert alert-{{category}} alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message|safe }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {%- endwith %}
+    {% endblock %}
 
-     <!-- flashed_messages -->
-	  {% for message in get_flashed_messages() %}
-		  <div class="alert">
-		  	<button type="button" class="close" data-dismiss="alert">×</button>
-		  	{{ message }}
-		  </div>
-	  {% endfor %}
 
 	  {% block section %}
 	  {% endblock %}

@@ -16,7 +16,7 @@ from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.cache import Cache
 from flask.ext.babel import Babel
-from flask.ext.login import LoginManager
+from flask_user import UserManager, SQLAlchemyAdapter
 from flask_mail import Mail
 
 
@@ -49,18 +49,10 @@ import flaskapp.models
 import flaskapp.app_exceptions
 import epages
 
-#Login
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = "user.login"
-login_manager.login_message = _(u"Please log in to access this page.")
+# Setup Flask-User
+db_adapter = SQLAlchemyAdapter(db, User)        # Register the User model
+user_manager = UserManager(db_adapter, app)     # Initialize Flask-User
 
-@login_manager.user_loader
-def load_user(userid):
-    try:
-        return User.query.get(userid)
-    except:
-        return None
 
 # Views import here >>
 import flaskapp.urls #lazy-optimized views load

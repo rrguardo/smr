@@ -9,7 +9,7 @@
 
 from flaskapp import db
 import datetime
-from flask.ext.login import UserMixin
+from flask_user import UserMixin
 import hashlib
 import uuid
 
@@ -27,18 +27,27 @@ class Group(db.Model):
 class User(db.Model, UserMixin):
     """ System users model"""
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True)
-    email = db.Column(db.String(120), unique=True)
-    password = db.Column(db.String(120))
+
+    # User Authentication information
+    username = db.Column(db.String(50), nullable=False, unique=True)
+    password = db.Column(db.String(255), nullable=False, default='')
+    reset_password_token = db.Column(db.String(100), nullable=False, default='')
+
+    # User Email information
+    email = db.Column(db.String(255), nullable=False, unique=True)
+    confirmed_at = db.Column(db.DateTime())
+
+    # User information
+    is_enabled = db.Column(db.Boolean(), nullable=False, default=False)
+    first_name = db.Column(db.String(50), nullable=False, default='')
+    last_name = db.Column(db.String(50), nullable=False, default='')
+
     group_id = db.Column(db.Integer, db.ForeignKey('group.id'))
     balance = db.Column(db.Float, default=0)
     auth_token = db.Column(db.String(120), unique=True)
 
-    def __init__(self, username, email, password):
-        self.username = username
-        self.email = email
-        self.password = password
-        self.auth_token = uuid.uuid4().hex
+    def is_active(self):
+          return self.is_enabled
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -60,14 +69,6 @@ class User(db.Model, UserMixin):
         """ Use this funct before save the model in database"""
         self.auth_token = uuid.uuid4().hex
 
-    @property
-    def is_active(self):
-        """Returns True if this is an active user - in addition to being
-        authenticated, they also have activated their account, not been
-        suspended, or any condition your application has for rejecting an
-        account. Inactive accounts may not log in (without being forced of
-        course). """
-        return True
 
     @property
     def is_authenticated(self):

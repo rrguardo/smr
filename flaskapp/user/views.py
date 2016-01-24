@@ -15,7 +15,7 @@ from flaskapp.user.forms import RegistrationForm, LoginForm, PasswChangeForm
 from flask.ext.login import login_required, logout_user, current_user
 from gettext import gettext as _
 import datetime
-from flaskapp import db
+from flaskapp import db, cache
 from flaskapp.models import SMS_Status
 from flaskapp.user.models import User
 from sqlalchemy import and_
@@ -125,8 +125,9 @@ def logout():
 
 
 @login_required
+@cache.cached(timeout=10)
 def stats():
-    """ User stats view"""
+    """ User stats view, cache 10 seconds."""
     current_time = datetime.datetime.now()
     current_time = current_time - datetime.timedelta(weeks=2)
     result = SMS_Status.query.filter(and_(SMS_Status.user_id == current_user.id,

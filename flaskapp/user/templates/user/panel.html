@@ -15,8 +15,8 @@
 <hr>
 
  <p> Update EasySMS website password here:
-    <a class="btn btn-primary" href="{{ url_for('user.upd_pw') }}" >
-        <i class="icon-lock icon-white"></i>
+    <a class="btn btn-primary" href="{{ url_for('user.change_password') }}" >
+        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
         Change Password
     </a>
  </p>
@@ -46,7 +46,7 @@
         <div class="control-group">
         <div class="controls">
             <button type="submit" class="btn btn-primary" id="gen_new">
-                <i class="icon-lock icon-white"></i>
+                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
                 {{ gettext('Gen New AuthToken') }}
             </button>
         </div>

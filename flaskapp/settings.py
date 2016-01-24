@@ -37,13 +37,18 @@ class Config(object):
     RECAPTCHA_PUBLIC_KEY = '6LcIsRMTAAAAAIpUA83BM9kD9AJpQTzh3qhqfwIF'
     RECAPTCHA_PRIVATE_KEY = '6LcIsRMTAAAAABctHcyKQbM0-_cYerIUc3UGQ3dA'
 
-    MAIL_SERVER = 'smtp.mandrillapp.com'
-    MAIL_PORT = 587
-    MAIL_USE_SSL = True
-    MAIL_USERNAME = 'admin@4simple.org'
-    MAIL_PASSWORD = 'B-mP6-lh9Nx71OWqybkM4g'
+    MAIL_SERVER = 'localhost'
+    MAIL_PORT = 25
+    #MAIL_USERNAME = 'noreply@4simple.org'
+    #MAIL_PASSWORD = ''
     MAIL_DEFAULT_SENDER = 'noreply@4simple.org'
-
+    # Flask-User settings
+    USER_ENABLE_CHANGE_USERNAME = False
+    USER_APP_NAME = 'EasySMS'
+    USER_AFTER_LOGIN_ENDPOINT = 'user.panel'
+    USER_AFTER_CONFIRM_ENDPOINT = 'user.panel'
+    USER_AFTER_CHANGE_PASSWORD_ENDPOINT = 'user.panel'
+    USER_AFTER_RESET_PASSWORD_ENDPOINT = 'user.panel'
 
 
 class ProductionConfig(Config):
