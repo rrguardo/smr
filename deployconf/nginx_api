@@ -2,7 +2,7 @@
 server {
 	listen 80;
 	listen [::]:80;
-	server_name easysms.4simple.org;
+	server_name  api.4simple.org;
 	location / { try_files $uri @flaskapp; }
 	location @flaskapp {
 		include uwsgi_params;
