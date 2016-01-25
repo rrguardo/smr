@@ -41,7 +41,7 @@ def contact():
         if not current_user.is_anonymous:
             usr_info = "current_user id: %s \n <br>" % current_user.id
         msg = Message("CONTACT EasySMS: " + form.subject.data,
-                      ["support@4simple.org"],
+                      ["noreply@4simple.org"],
                       usr_info + form.message.data)
         mail.send(msg)
         flash('Request submitted successfully, thanks for your feedback.')

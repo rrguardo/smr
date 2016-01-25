@@ -18,9 +18,10 @@
         {{ hforms.with_errors(form.subject, placeholder=gettext('Subject')) }}
         {{ hforms.with_errors(form.message, placeholder=gettext('Message'), rows=7) }}
         {{ hforms.with_errors(form.recaptcha) }}
+        <br>
         <div class="control-group">
             <div class="controls">
-                <button type="submit" class="btn">{{ gettext('Submit') }}</button>
+                <button type="submit" class="btn btn-default">{{ gettext('Submit') }}</button>
             </div>
         </div>
      </form>
