@@ -51,7 +51,6 @@
 	</head>
 <body>
 
-
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -62,7 +61,6 @@
 
     <ul class="nav navbar-nav">
              {% if current_user.is_authenticated %}
-
                   <li><a href="{{ url_for('user.panel') }}">
                   <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
                   Panel</a></li>
@@ -163,7 +161,8 @@
 
       
       <footer>
-        {{ gettext('All Rights Reserved') }} &copy; 2014-2016
+          {{ gettext('All Rights Reserved') }} &copy; 2014-2016
+          <small style="margin-left: 15px;" ><a href="{{ url_for('tos') }}" >Terms Of Services</a></small>
       </footer>
 
     </div> <!-- /container -->

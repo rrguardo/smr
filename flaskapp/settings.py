@@ -5,14 +5,6 @@
 
     Flask application settings.
 
-    Mandril settings:
-    email: admin@4simple.org
-    passw: #CvTs8v*SL
-
-    Host smtp.mandrillapp.com
-    Port 587
-    SMTP Username: admin@4simple.org
-    SMTP Password: B-mP6-lh9Nx71OWqybkM4g
 """
 
 
@@ -49,6 +41,10 @@ class Config(object):
     USER_AFTER_CONFIRM_ENDPOINT = 'user.panel'
     USER_AFTER_CHANGE_PASSWORD_ENDPOINT = 'user.panel'
     USER_AFTER_RESET_PASSWORD_ENDPOINT = 'user.panel'
+    # flask cache conf
+    CACHE_TYPE = 'simple'
+    # only enable api
+    IS_API = False
 
 
 class ProductionConfig(Config):

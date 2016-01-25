@@ -33,7 +33,7 @@ babel = Babel(app)
 import babelhelper
 
 #setup cache
-cache = Cache(app,config={'CACHE_TYPE': 'simple'})
+cache = Cache(app)
 
 #loggers
 from flasklog import set_loggers
@@ -45,28 +45,25 @@ import flaskapp.user.models
 from flaskapp.user.models import User
 import flaskapp.models
 
-# Custom Exceptions errorhandler reg
+# Custom Exceptions error handler reg
 import flaskapp.app_exceptions
 import epages
 
-# Setup Flask-User
-db_adapter = SQLAlchemyAdapter(db, User)        # Register the User model
-user_manager = UserManager(db_adapter, app)     # Initialize Flask-User
+if app.config.get('IS_API', False):
+    from flaskapp.api_s import api_s_bp
+    app.register_blueprint(api_s_bp, url_prefix='/api')
+else:
+    # Setup Flask-User
+    db_adapter = SQLAlchemyAdapter(db, User)        # Register the User model
+    user_manager = UserManager(db_adapter, app)     # Initialize Flask-User
 
-
-# Views import here >>
-import flaskapp.urls #lazy-optimized views load
-#import flaskapp.views
-#from flaskapp.api import api_bp
-from flaskapp.api_s import api_s_bp
-from flaskapp.user import user_bp
-from flaskapp.store import store_bp
-# BluePrints register here >>
-#app.register_blueprint(api_bp, url_prefix='/api')
-app.register_blueprint(api_s_bp, url_prefix='/api')
-app.register_blueprint(user_bp, url_prefix='/user')
-app.register_blueprint(store_bp, url_prefix='/store')
-
+    import flaskapp.urls
+    from flaskapp.user import user_bp
+    from flaskapp.store import store_bp
+    # BluePrints register here >>
+    #app.register_blueprint(api_bp, url_prefix='/api')
+    app.register_blueprint(user_bp, url_prefix='/user')
+    app.register_blueprint(store_bp, url_prefix='/store')
 
 #flask-admin
 #import adminhelper

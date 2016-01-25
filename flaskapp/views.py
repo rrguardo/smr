@@ -49,9 +49,9 @@ def contact():
     return render_template('contact.html', form=form)
 
 
-def about():
-    """ api_doc view"""
-    return render_template('about.html')
+def tos():
+    """ tos view"""
+    return render_template('tos.html')
 
 
 @login_required
