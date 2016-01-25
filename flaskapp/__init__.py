@@ -23,7 +23,7 @@ from flask_mail import Mail
 # create application
 app = Flask(__name__)
 #default app setting
-app.config.from_object('flaskapp.settings.TestingConfig')
+app.config.from_object('flaskapp.settings.ProductionConfig')
 
 #email
 mail = Mail(app)

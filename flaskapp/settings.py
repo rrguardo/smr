@@ -14,7 +14,7 @@ class Config(object):
     TESTING = False
     SQLALCHEMY_DATABASE_URI = 'sqlite:///flask.db'
     #SQLALCHEMY_DATABASE_URI = 'mysql://root:1234567*@127.0.0.1/smr'
-    SECRET_KEY = 'development key'
+    SECRET_KEY = 'xVuTBn74F9VhTy62SaLy5p0TxCrJP51062Cc33'
     #LOG SETTINGS
     LOG_EML_ADMINS = ['yourname@example.com']
     LOG_EML_SENDER = 'server-error@example.com'
@@ -31,7 +31,7 @@ class Config(object):
 
     MAIL_SERVER = 'localhost'
     MAIL_PORT = 25
-    #MAIL_USERNAME = 'noreply@4simple.org'
+    MAIL_USERNAME = 'noreply'
     #MAIL_PASSWORD = ''
     MAIL_DEFAULT_SENDER = 'noreply@4simple.org'
     # Flask-User settings

@@ -161,8 +161,14 @@
 
       
       <footer>
+          <div class="alert alert-info" role="alert">
+              <strong>Beta Product Warning!</strong> This web site and services are in beta version, report any problem
+              detected at <a href="{{ url_for('contact') }}" >contact page</a>.
+          </div>
+          <br>
           {{ gettext('All Rights Reserved') }} &copy; 2014-2016
           <small style="margin-left: 15px;" ><a href="{{ url_for('tos') }}" >Terms Of Services</a></small>
+          <br><br><br>
       </footer>
 
     </div> <!-- /container -->
