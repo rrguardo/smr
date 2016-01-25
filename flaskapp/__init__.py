@@ -45,14 +45,16 @@ import flaskapp.user.models
 from flaskapp.user.models import User
 import flaskapp.models
 
-# Custom Exceptions error handler reg
-import flaskapp.app_exceptions
-import epages
 
 if app.config.get('IS_API', False):
-    from flaskapp.api_s import api_s_bp
-    app.register_blueprint(api_s_bp, url_prefix='/api')
+    # from flaskapp.api_s import api_s_bp
+    # app.register_blueprint(api_s_bp, url_prefix='/api')
+    from flaskapp.api_s import urls
 else:
+    # Custom Exceptions error handler reg
+    import flaskapp.app_exceptions
+    import epages
+
     # Setup Flask-User
     db_adapter = SQLAlchemyAdapter(db, User)        # Register the User model
     user_manager = UserManager(db_adapter, app)     # Initialize Flask-User

@@ -29,7 +29,7 @@ def view_cache_per_lang():
 
 def api_doc():
     """ api_doc view"""
-    api_url = "https://easysms.4simple.org/api/"
+    api_url = "https://api.4simple.org/"
     return render_template('api_doc/index.html', api_url=api_url)
 
 

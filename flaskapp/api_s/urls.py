@@ -8,9 +8,9 @@
 
 
 from flaskapp.lazyhelpers import url
-from flaskapp.api_s import api_s_bp
+from flaskapp import app
 
 
-url(api_s_bp, '/balance', 'api_s.views.get_balance', methods=['POST'])
-url(api_s_bp, '/sms', 'api_s.views.send_sms', methods=['POST'])
-url(api_s_bp, '/status', 'api_s.views.get_sms_status', methods=['POST'])
+url(app, '/balance', 'api_s.views.get_balance', methods=['POST'])
+url(app, '/sms', 'api_s.views.send_sms', methods=['POST'])
+url(app, '/status', 'api_s.views.get_sms_status', methods=['POST'])
