@@ -54,6 +54,7 @@ else:
     # Custom Exceptions error handler reg
     import flaskapp.app_exceptions
     import epages
+    from flaskapp import psignals
 
     # Setup Flask-User
     db_adapter = SQLAlchemyAdapter(db, User)        # Register the User model

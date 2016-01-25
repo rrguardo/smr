@@ -52,12 +52,6 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return '<User %r>' % self.username
 
-    def update_password(self):
-        """ Use this funct before save the model in database"""
-        sh = hashlib.sha1()
-        sh.update(self.password)
-        self.password = sh.hexdigest()
-
     def update_balance(self, amount):
         """Update the user balance + amount."""
         db.engine.execute("""UPDATE user
@@ -66,7 +60,7 @@ class User(db.Model, UserMixin):
                     """ % (amount, self.id))
 
     def update_token(self):
-        """ Use this funct before save the model in database"""
+        """ Use this function before save the model in database"""
         self.auth_token = uuid.uuid4().hex
 
 

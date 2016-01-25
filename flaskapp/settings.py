@@ -4,7 +4,6 @@
     ~~~~~~~~~~~~~~~~~
 
     Flask application settings.
-
 """
 
 
@@ -12,8 +11,6 @@ class Config(object):
     """ Configuration base class"""
     DEBUG = False
     TESTING = False
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///flask.db'
-    #SQLALCHEMY_DATABASE_URI = 'mysql://root:1234567*@127.0.0.1/smr'
     SECRET_KEY = 'xVuTBn74F9VhTy62SaLy5p0TxCrJP51062Cc33'
     #LOG SETTINGS
     LOG_EML_ADMINS = ['yourname@example.com']
@@ -41,28 +38,29 @@ class Config(object):
     USER_AFTER_CONFIRM_ENDPOINT = 'user.panel'
     USER_AFTER_CHANGE_PASSWORD_ENDPOINT = 'user.panel'
     USER_AFTER_RESET_PASSWORD_ENDPOINT = 'user.panel'
-    # flask cache conf
-    CACHE_TYPE = 'simple'
     # only enable api
     IS_API = False
 
 
 class ProductionConfig(Config):
     """ Configuration for production stage"""
-    #SQLALCHEMY_DATABASE_URI = 'mysql://root:1234567*@127.0.0.1/smr'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///flask.db'
-    #LOG_FILE = '/home/appuser/flaskdeploy/flaskapp.log'
+    # database conf.
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:c5XwpgT71CvvTs3Sd@127.0.0.1/smr'
+    # flask cache conf
+    CACHE_TYPE = 'memcached'
+    CACHE_DEFAULT_TIMEOUT = 60
+    CACHE_MEMCACHED_SERVERS = ['127.0.0.1']
 
 
 class DevelopmentConfig(Config):
     """ Configuration for development stage"""
     DEBUG = True
+    CACHE_TYPE = 'simple'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///flask.db'
 
 
 class TestingConfig(Config):
     """ Configuration for testing stage"""
     TESTING = True
-    #SQLALCHEMY_DATABASE_URI = 'mysql://root:1234567*@127.0.0.1/smr'
     SQLALCHEMY_DATABASE_URI = 'sqlite:///flask.db'
-    #LOG_FILE = '/home/appuser/flaskdeploy/flaskapp.log'
-
+    CACHE_TYPE = 'simple'
