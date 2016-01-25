@@ -1,0 +1,31 @@
+
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server ipv6only=on;
+	server_name easysms.4simple.org;
+	location / { try_files $uri @flaskapp; }
+	location @flaskapp {
+		include uwsgi_params;
+		uwsgi_pass unix:/tmp/flaskapp_uwsgi_api.sock;
+	}
+
+}
+
+
+# HTTPS server
+
+#server {
+#	listen 443;
+#	server_name 4simple.org;
+#
+#	ssl on;
+#	ssl_certificate /var/ssl/4simple.crt;
+#	ssl_certificate_key /var/ssl/4simple.key;
+#
+#   location / { try_files $uri @flaskapp; }
+#    location @flaskapp {
+#            include uwsgi_params;
+#            uwsgi_pass unix:/tmp/flaskapp_uwsgi.sock;
+#    }
+#
+#}
