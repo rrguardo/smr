@@ -1,7 +1,25 @@
 
+# HTTP redirect HTTP to HTTPS
+
 server {
-	listen 80;
+    listen 80;
+    server_name easysms.4simple.org;
+    return 301 https://$host$request_uri;
+}
+
+#HTTPS
+
+server {
+	listen 443 ssl;
 	server_name easysms.4simple.org;
+
+    ssl_certificate /etc/letsencrypt/live/easysms.4simple.org/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/easysms.4simple.org/privkey.pem;
+
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_prefer_server_ciphers on;
+    ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+
 	location / { try_files $uri @flaskapp; }
 	location @flaskapp {
 		include uwsgi_params;
@@ -9,22 +27,3 @@ server {
 	}
 
 }
-
-
-# HTTPS server
-
-#server {
-#	listen 443;
-#	server_name 4simple.org;
-#
-#	ssl on;
-#	ssl_certificate /var/ssl/4simple.crt;
-#	ssl_certificate_key /var/ssl/4simple.key;
-#
-#   location / { try_files $uri @flaskapp; }
-#    location @flaskapp {
-#            include uwsgi_params;
-#            uwsgi_pass unix:/tmp/flaskapp_uwsgi.sock;
-#    }
-#
-#}

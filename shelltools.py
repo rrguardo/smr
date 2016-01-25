@@ -30,16 +30,3 @@ def test_shell(ctx):
 def init_database():
     """ Create database using sqlalchemy Model"""
     db.create_all()
-    # inserting some test data
-    from flaskapp.user.models import User
-    admin = User('admin', 'admin@example.com', 
-                 '2ea6201a068c5fa0eea5d81a3863321a87f8d533')
-    guest = User('guest', 'guest@example.com', 
-                 '2ea6201a068c5fa0eea5d81a3863321a87f8d533')
-    guest.auth_token = "1234567"
-    guest.balance = 100
-    db.session.add(admin)
-    db.session.add(guest)
-    db.session.commit()
-    users = User.query.all()
-    print users
