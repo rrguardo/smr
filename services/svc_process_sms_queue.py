@@ -12,9 +12,9 @@ from flaskapp.sproxy.nexmo_proxy import nexmo_proxy
 import pika
 
 
-PROXYS = [{"class": tw_proxy, "fails": 0, "enabled": True},
+PROXYS = [{"class": tw_proxy, "fails": 0, "enabled": False},
     {"class": plivo_proxy, "fails": 0, "enabled": False},
-    {"class": nexmo_proxy, "fails": 0, "enabled": False}]
+    {"class": nexmo_proxy, "fails": 0, "enabled": True}]
 
 
 def proxy_pick():
