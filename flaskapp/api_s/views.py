@@ -10,7 +10,7 @@ import json
 from flask import jsonify, request
 from flaskapp.user.models import User
 from flaskapp.models import SMS_Status
-from flaskapp import db
+from flaskapp import db, app
 from flaskapp.utils.rate import out_sms_rate
 import pika
 
@@ -106,8 +106,9 @@ class Auth_API:
 def process_sms(sms_job):
     """Process the sms"""
     try:
+        credentials = pika.PlainCredentials(app.config.get('RABBIT_USER'), app.config.get('RABBIT_PASSW'))
         connection = pika.BlockingConnection(pika.ConnectionParameters(
-                host='localhost'))
+            host=app.config.get('RABBIT_HOST'), port=app.config.get('RABBIT_PORT'), credentials=credentials))
         channel = connection.channel()
         channel.queue_declare(queue='sms')
         channel.basic_publish(exchange='', routing_key='sms', body=sms_job)

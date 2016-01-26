@@ -9,6 +9,7 @@ from flaskapp.models import SMS_Status
 from flaskapp.sproxy.tw_proxy import tw_proxy
 from flaskapp.sproxy.plivo_proxy import plivo_proxy
 from flaskapp.sproxy.nexmo_proxy import nexmo_proxy
+from flaskapp.settings import Config
 import pika
 
 
@@ -63,8 +64,9 @@ def queue_callback(ch, method, properties, body):
 
 
 def process_sms_queue():
+    credentials = pika.PlainCredentials(Config.RABBIT_USER, Config.RABBIT_PASSW)
     connection = pika.BlockingConnection(pika.ConnectionParameters(
-            host='localhost'))
+            host=Config.RABBIT_HOST, port=Config.RABBIT_PORT, credentials=credentials))
     channel = connection.channel()
     channel.queue_declare(queue='sms')
     channel.basic_consume(queue_callback, queue='sms', no_ack=True)
