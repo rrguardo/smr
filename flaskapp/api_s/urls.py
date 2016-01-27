@@ -13,4 +13,4 @@ from flaskapp import app
 
 url(app, '/balance', 'api_s.views.get_balance', methods=['POST'])
 url(app, '/sms', 'api_s.views.send_sms', methods=['POST'])
-url(app, '/status', 'api_s.views.get_sms_status', methods=['POST','GET'])
+url(app, '/status', 'api_s.views.get_sms_status', methods=['POST'])

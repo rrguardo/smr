@@ -30,6 +30,9 @@ class SMS_Status(db.Model):
     status = db.Column(db.String(20))
     user_id = db.Column(db.Integer)
     send_date = db.Column(db.DateTime, default=func.now())
+    proxy = db.Column(db.Integer)
+    proxy_msg_id = db.Column(db.String(150))
+    proxy_status = db.Column(db.String(50))
 
     def __init__(self, user_id, status):
         self.user_id = user_id

@@ -6,6 +6,7 @@ sys.path.append('..')
 
 from flaskapp import db
 from flaskapp.models import SMS_Status
+from flaskapp.user.models import User
 from flaskapp.sproxy.tw_proxy import tw_proxy
 from flaskapp.sproxy.plivo_proxy import plivo_proxy
 from flaskapp.sproxy.nexmo_proxy import nexmo_proxy
@@ -57,10 +58,16 @@ def queue_callback(ch, method, properties, body):
             db.session.commit()
         else:
             sm.status = "success-delivered"
+            sm.proxy = str(sprox.proxy_id)
+            sm.proxy_msg_id = str(sresult.get("msg_id"))
+            sm.proxy_status = str(sresult.get("status"))
+            # add future refunds or extra discounts here
+            #if sresult.get("total", 1) > 1:
+            #    User.update_user_balance(sm.user_id, )
             db.session.add(sm)
             db.session.commit()
-    except:
-        print "error in queue processing"
+    except Exception, e:
+        print "error in queue processing: %s" % e.message
 
 
 def process_sms_queue():

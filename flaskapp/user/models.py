@@ -59,6 +59,14 @@ class User(db.Model, UserMixin):
                     WHERE id = %s
                     """ % (amount, self.id))
 
+    @staticmethod
+    def update_user_balance(user_id, amount):
+        """Update the user balance + amount."""
+        db.engine.execute("""UPDATE user
+                    SET balance = balance+%s
+                    WHERE id = %s
+                    """ % (amount, user_id))
+
     def update_token(self):
         """ Use this function before save the model in database"""
         self.auth_token = uuid.uuid4().hex
