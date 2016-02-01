@@ -1,6 +1,6 @@
 
 #DDoS protection rules
-limit_req_zone $binary_remote_addr zone=one:10m rate=35r/m;
+limit_req_zone $binary_remote_addr zone=one:10m rate=60r/m;
 limit_conn_zone $binary_remote_addr zone=addr:10m;
 
 # HTTP redirect HTTP to HTTPS
@@ -31,7 +31,7 @@ server {
 	}
     #DDoS protection rules
     limit_req zone=one;
-    limit_conn addr 5;
-    client_body_timeout 5s;
-    client_header_timeout 5s;
+    limit_conn addr 10;
+    client_body_timeout 7s;
+    client_header_timeout 7s;
 }
