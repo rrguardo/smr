@@ -58,6 +58,6 @@ class nexmo_proxy(ProxyInterface):
     def get_balance(self):
         try:
             client = nexmo.Client(key=self.api_key, secret=self.api_secret)
-            return float(client.get_balance())
+            return float(client.get_balance()['value'])
         except Exception, e:
             app.logger.error("Nexmo get balance error: %s" % e.message)
