@@ -1,4 +1,8 @@
 
+#DDoS protection rules
+limit_req_zone $binary_remote_addr zone=one:10m rate=35r/m;
+limit_conn_zone $binary_remote_addr zone=addr:10m;
+
 # HTTP redirect HTTP to HTTPS
 
 server {
@@ -25,5 +29,8 @@ server {
 		include uwsgi_params;
 		uwsgi_pass unix:/tmp/flaskapp_uwsgi_web.sock;
 	}
+    #DDoS protection rules
+    limit_req zone=one;
+    limit_conn addr 5;
 
 }

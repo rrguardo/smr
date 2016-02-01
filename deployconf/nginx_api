@@ -1,4 +1,9 @@
 
+#DDoS protection rules
+limit_req_zone $binary_remote_addr zone=one1:10m rate=50r/m;
+limit_conn_zone $binary_remote_addr zone=addr1:10m;
+
+
 # HTTP redirect HTTP to HTTPS
 
 server {
@@ -20,11 +25,15 @@ server {
     ssl_prefer_server_ciphers on;
     ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
 
-	location / { try_files $uri @flaskapp; }
-	location @flaskapp {
-		include uwsgi_params;
-		uwsgi_pass unix:/tmp/flaskapp_uwsgi_api.sock;
-	}
+    location / { try_files $uri @flaskapp; }
+    location @flaskapp {
+	include uwsgi_params;
+	uwsgi_pass unix:/tmp/flaskapp_uwsgi_api.sock;
+    }
+
+    #DDoS protection rules
+    limit_req zone=one1;
+    limit_conn addr1 15;
 
 }
 
