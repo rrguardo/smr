@@ -18,12 +18,17 @@ from flask.ext.cache import Cache
 from flask.ext.babel import Babel
 from flask_user import UserManager, SQLAlchemyAdapter
 from flask_mail import Mail
+import os
 
 
 # create application
 app = Flask(__name__)
+
 #default app setting
-app.config.from_object('flaskapp.settings.ProductionConfig')
+settings_str = 'flaskapp.settings.ProductionConfig'
+if os.environ.get('IS_DEV'):
+    settings_str = 'flaskapp.settings.DevelopmentConfig'
+app.config.from_object(settings_str)
 
 #email
 mail = Mail(app)

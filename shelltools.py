@@ -29,4 +29,5 @@ def test_shell(ctx):
 
 def init_database():
     """ Create database using sqlalchemy Model"""
+    #app.config.from_object('flaskapp.settings.DevelopmentConfig')
     db.create_all()

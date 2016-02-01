@@ -47,10 +47,17 @@ class nexmo_proxy(ProxyInterface):
                 'text': msg
                 })
             parsed = self._parse(response)
-            return {"success": parsed[0]==parsed[1], "msg_id": parsed[2], "total": parsed[0], "status": parsed[3]}
-        except:
-            pass
+            return {"success": parsed[0] == parsed[1],
+                    "msg_id": parsed[2],
+                    "total": parsed[0],
+                    "status": parsed[3]}
+        except Exception, e:
+            app.logger.error("Error parsing sending sms: %s" % e.message)
         return False
 
     def get_balance(self):
-        return -1
+        try:
+            client = nexmo.Client(key=self.api_key, secret=self.api_secret)
+            return float(client.get_balance())
+        except Exception, e:
+            app.logger.error("Nexmo get balance error: %s" % e.message)

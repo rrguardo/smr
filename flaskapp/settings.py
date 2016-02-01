@@ -6,6 +6,8 @@
     Flask application settings.
 """
 
+import os
+
 
 class Config(object):
     """ Configuration base class"""
@@ -39,12 +41,16 @@ class Config(object):
     USER_AFTER_CHANGE_PASSWORD_ENDPOINT = 'user.panel'
     USER_AFTER_RESET_PASSWORD_ENDPOINT = 'user.panel'
     # rabbitmq settings
-    RABBIT_USER = "guest"
+    RABBIT_USER = "smrxcdsfsx"
     RABBIT_PASSW = "HvRh62Vc38VcTsKhTT31S"
     RABBIT_HOST = "localhost"
     RABBIT_PORT = 5672
     # only enable api
     IS_API = False
+    if os.environ.get("IS_API", False):
+        IS_API = True
+    # sms proxy balance threshold
+    PROXY_BALANCE_THRESHOLD = 5
 
 
 class ProductionConfig(Config):

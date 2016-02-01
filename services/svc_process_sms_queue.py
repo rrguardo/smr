@@ -4,7 +4,7 @@ import sys
 import json
 sys.path.append('..')
 
-from flaskapp import db
+from flaskapp import db, app
 from flaskapp.models import SMS_Status
 from flaskapp.user.models import User
 from flaskapp.sproxy.tw_proxy import tw_proxy
@@ -32,7 +32,7 @@ def proxy_pick():
 def proxy_inc_fails(class_inst):
     for prox in PROXYS:
         if prox["class"] == class_inst:
-            prox["fails"] = prox["fails"] + 1
+            prox["fails"] += 1
 
 
 def queue_callback(ch, method, properties, body):
@@ -52,18 +52,19 @@ def queue_callback(ch, method, properties, body):
         sresult = sprox().send(to_, message_)
         if not sresult:
             proxy_inc_fails(sprox)
-            print "SMS Proxy %s fails" % sprox.__name__
+            app.logger.error("SMS Proxy %s fails" % sprox.__name__)
             sm.status = "failed-r1"
             db.session.add(sm)
             db.session.commit()
         else:
             sm.status = "success-delivered"
             sm.proxy = str(sprox.proxy_id)
-            sm.proxy_msg_id = str(sresult.get("msg_id"))
-            sm.proxy_status = str(sresult.get("status"))
-            # add future refunds or extra discounts here
-            #if sresult.get("total", 1) > 1:
-            #    User.update_user_balance(sm.user_id, )
+            if isinstance(sresult, dict):
+                sm.proxy_msg_id = str(sresult.get("msg_id"))
+                sm.proxy_status = str(sresult.get("status"))
+                # add future refunds or extra discounts here
+                if sresult.get("total", 1) > 1:
+                    User.update_user_balance(sm.user_id, sm.rate*-1)
             db.session.add(sm)
             db.session.commit()
     except Exception, e:

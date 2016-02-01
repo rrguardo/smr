@@ -23,11 +23,12 @@ class Auth_API:
 
     def auth_user(self):
         try:
-            auth_token = request.form['auth_token']
-            user_id = request.form['user_id']
-            self._user = User.query.filter_by(id=user_id,
-                auth_token=auth_token).first()
-        except:
+            auth_token = request.form.get('auth_token', "")
+            user_id = request.form.get('user_id', "")
+            self._user = User.query.filter_by(id=user_id, auth_token=auth_token).first()
+        except Exception, e:
+            app.logger.error("auth-error: %s" % e.message)
+            app.logger.error("auth-error uid: %s tk: %s" % (user_id, auth_token))
             self._user = None
         finally:
             return self._user is not None
@@ -56,7 +57,8 @@ class Auth_API:
                 sm = SMS_Status.query.filter_by(id=pid,
                     user_id=self._user.id).first()
                 return jsonify({'status': sm.status})
-            except:
+            except Exception, e:
+                app.logger.error("get_sms_status: %s" % e.message)
                 return jsonify({'error': 'Pid error'})
         else:
             return jsonify({'error': 'Login error'})
@@ -85,14 +87,15 @@ class Auth_API:
                 return jsonify({'error': 'Invalid phone number format.'})
             if rate_ > 0 and rate_ < self._user.balance:
                 # discount balance before send sms
-                db.engine.execute("""UPDATE user
-                    SET balance = balance-%s
-                    WHERE id = %s
-                    """ % (rate_, self._user.id))
+                User.update_user_balance(self._user.id, rate_*-1)
                 st = SMS_Status(self._user.id, 'queued')
                 db.session.add(st)
                 db.session.commit()
-                sms_job = {'to': to_, 'message': message_, 'pid': st.id}
+                sms_job = {'to': to_,
+                           'message': message_,
+                           'pid': st.id,
+                           'user_id': self._user.id,
+                           'rate': rate_}
                 sms_job = json.dumps(sms_job)
                 if not process_sms(sms_job):
                     return jsonify({'error': 'queue error'})
