@@ -32,5 +32,6 @@ server {
     #DDoS protection rules
     limit_req zone=one;
     limit_conn addr 5;
-
+    client_body_timeout 5s;
+    client_header_timeout 5s;
 }
