@@ -38,7 +38,8 @@ except Exception, e:
 
 body += "</table> <br><br><br>"
 
-msg = Message("Messages Stats For %s <br><br>" % day.strftime("%Y-%m-%d"),
-              ['rrguardo83@gmail.com'],
-              html=body, body=body)
-mail.send(msg)
+with app.app_context():
+    msg = Message("Messages Stats For %s <br><br>" % day.strftime("%Y-%m-%d"),
+                  ['rrguardo83@gmail.com'],
+                  html=body, body=body)
+    mail.send(msg)
