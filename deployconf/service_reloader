@@ -13,7 +13,7 @@ cd $svc_path;
 
 for a in `seq $to_add`
 do
-  nohub python $service".py" &
+  nohup python $service".py" &
 done;
 
 fi
