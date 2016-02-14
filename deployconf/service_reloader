@@ -1,11 +1,19 @@
 #!/bin/bash
-service=svc_process_sms_queue
-srv_path=/home/www-data/repos/smr_web/services
 
-if (( $(ps -ef | grep -v grep | grep $service | wc -l) > 0 ))
-then
-echo "$service is running!!!"
-else
-cd $srv_path
-python svc_process_sms_queue.py
+service="svc_process_sms_queue"
+svc_path="/home/www-data/repos/smr_web/services"
+total=7
+
+to_add=$(($total-$(ps -ef  | grep "$service" | wc -l)))
+
+if [ "$to_add" -gt "0" ]
+then echo "SHOULD ADD PROCESS $to_add";
+
+cd $svc_path;
+
+for a in `seq $to_add`
+do
+  nohub python $service".py" &
+done;
+
 fi

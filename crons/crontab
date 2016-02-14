@@ -1,4 +1,6 @@
 
-#* * * * * /home/www-data/repos/smr_web/deployconf/service_reloader
+* * * * * /home/www-data/repos/smr_web/deployconf/service_reloader
 
 5 * * * * python /home/www-data/repos/smr_web/crons/cron_warn_proxy_balance.py
+
+10 0 * * * python /home/www-data/repos/smr_web/crons/cron_daily_stats.py
