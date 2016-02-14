@@ -9,6 +9,7 @@
 HOMEC="/home/www-data/repos/smr_web/crons/"
 HOME_DEPLOY="/home/www-data/repos/smr_web/deployconf/"
 
+@reboot  cd $HOME_DEPLOY; uwsgi --emperor nginx_flask_*.ini
 
 */2 * * * * cd $HOME_DEPLOY; ./service_reloader
 
