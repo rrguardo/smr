@@ -1,6 +1,17 @@
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+#
+# For more information see the manual pages of crontab(5) and cron(8)
+#
+# m h  dom mon dow   command
 
-* * * * * /home/www-data/repos/smr_web/deployconf/service_reloader
+HOMEC="/home/www-data/repos/smr_web/crons/"
+HOME_DEPLOY="/home/www-data/repos/smr_web/deployconf/"
 
-5 * * * * python /home/www-data/repos/smr_web/crons/cron_warn_proxy_balance.py
 
-10 0 * * * python /home/www-data/repos/smr_web/crons/cron_daily_stats.py
+*/2 * * * * cd $HOME_DEPLOY; ./service_reloader
+
+5 * * * * cd $HOMEC; python cron_warn_proxy_balance.py
+
+10 0 * * * cd $HOMEC; python cron_daily_stats.py
