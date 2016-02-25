@@ -18,3 +18,7 @@ UWS=/usr/local/bin/uwsgi
 5 * * * * cd $HOMEC; python cron_warn_proxy_balance.py
 
 10 0 * * * cd $HOMEC; python cron_daily_stats.py
+
+# ssl-cert
+10 0 * * 0 /opt/letsencrypt/letsencrypt-auto renew
+25 0 * * 0 service nginx reload
