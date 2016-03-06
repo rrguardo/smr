@@ -100,8 +100,6 @@
 
 
             <ul class="nav navbar-nav navbar-right" >
-
-
                 {% if current_user.is_anonymous %}
                     <li>
                         <a href="{{ url_for('user.login') }}">
@@ -124,6 +122,15 @@
                     </li>
 
                 {% endif %}
+                
+                <li>
+                    <div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', gaTrack: true, gaId: 'UA-74431955-2'}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+                </li>
             </ul>
   </div>
 </nav>
