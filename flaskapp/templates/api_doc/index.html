@@ -5,13 +5,13 @@
 {% block section %}
 
    <div class="hero-unit">
-     <h2>{{ gettext('HTTPS API Documentation') }}</h2>
+     <h2>{{ gettext('API Documentation') }}</h2>
      <hr>
 
     <p>
-    In order to use the API you should have and account. The required credentials
-    for the API usage are the "user id" and "authentication token". You can locate
-    this info at the users panel after you login in the site.
+    In order to use the API, create an account in our system. The required credentials
+    for the API usage are the "user id" and "authentication token". This info is
+    located at the users panel.
     </p>
 
    <p>
@@ -42,17 +42,17 @@
             <dl>
                 <dt>user_id</dt>
                 <dd>
-                    Your user account id, located at user panel.
+                    The user <strong>account id</strong>, located at user panel.
                 </dd>
                 
                 <dt>auth_token</dt>
                 <dd>
-                    Your user account "authentication token", located at user panel.
+                    The user <strong>authentication token</strong>, located at user panel.
                 </dd>
                 
                 <dt>to</dt>
                 <dd>
-                    The phone number where you will send the SMS.
+                    The phone number where send the SMS.
                 </dd>
                 
                 <dt>body</dt>
@@ -102,7 +102,7 @@
     <dl>
       <dt>{'success': 'ok', 'pid': 123}</dt>
       <dd>
-       The <strong>success</strong> key is returned when message was delivery ok to our system.
+       The <strong>success</strong> key is returned when message was delivered ok to our system.
           The processing id <strong>pid</strong> returned can be used for track the SMS message status.
       </dd>
 
@@ -127,7 +127,7 @@
     <hr>
 
     <div class="row">
-    <h3>How know your account available credits/balance.</h3>
+    <h3>How know the account credits available.</h3>
     <p>
         Do a HTTP POST request to the API url <strong>{{ api_url }}balance</strong>
         using the following HTTP POST vars.

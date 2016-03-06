@@ -5,26 +5,24 @@
 
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
-        <h1>{{ gettext('Easy SMS for your software!') }}</h1>
+        <h1>{{ gettext('Easy SMS text messages for applications!') }}</h1>
         <p>
-            EasySMS if a simple solution for allow add SMS messages to your software.
-            By just doing a HTTPS POST to our API url, your mobile/web or desktop software will be able to send
-            SMS messages.
-
+            EasySMS is a simple solution that allow add SMS text messages to any software.
+        </p>
       <h3>EasySMS features</h3>
       <ul>
           <li>
-              Simple HTTP POST API to deliver SMS from your applications in few steps.
+              Simple <a href="{{ url_for('api_doc') }}" >HTTP POST API</a> to deliver SMS from any application in one step.
           </li>
           <li>
               API client libs in popular languages <a href="{{ url_for('api_doc') }}" >(PHP, Python and .Net)</a>
           </li>
           <li>
-              Secure information. EasySMS API run over HTTPS, this mean that all data related to messages
-              are protected and transferred encrypted.
+              Secure SMS text information. EasySMS API is over HTTPS, this mean that all data related to messages
+              is protected and transferred encrypted.
           </li>
           <li>
-              Users panel with SMS delivered stats, API credentials management and more.
+              Users panel with SMS stats, API credentials management and more.
           </li>
           <li>
               Simple and fast payment using <strong>PayPal</strong>.
@@ -32,7 +30,7 @@
       </ul>
         </p>
           <br>
-        <p><a class="btn btn-primary btn-large" href="{{ url_for('user.register') }}" >{{ gettext('Joint Us') }} &raquo;</a></p>
+        <p><a class="btn btn-primary btn-large" href="{{ url_for('user.register') }}" >{{ gettext('Create An Account Today') }} &raquo;</a></p>
       </div>
 
 {% endblock %}
