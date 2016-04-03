@@ -1,6 +1,6 @@
 
 #DDoS protection rules
-limit_req_zone $binary_remote_addr zone=one:20m rate=5r/s;
+limit_req_zone $binary_remote_addr zone=one:20m rate=15r/s;
 limit_conn_zone $binary_remote_addr zone=addr:20m;
 
 # HTTP redirect HTTP to HTTPS
