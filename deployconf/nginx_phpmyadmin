@@ -1,0 +1,58 @@
+
+
+#DDoS protection rules
+limit_req_zone $binary_remote_addr zone=onephp:20m rate=5r/s;
+limit_conn_zone $binary_remote_addr zone=addrphp:20m;
+
+# HTTP redirect HTTP to HTTPS
+
+server {
+    listen 80;
+    server_name phpadmin.4simple.org;
+    return 301 https://$host$request_uri;
+}
+
+
+server {
+    listen 443 ssl;
+
+    root /usr/share/nginx/html/phpmyadmin/;
+    index index.php index.html index.htm;
+
+    server_name phpadmin.4simple.org;
+
+
+    ssl_certificate /etc/letsencrypt/live/easysms.4simple.org/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/easysms.4simple.org/privkey.pem;
+
+    ssl_protocols TLSv1.2;
+    ssl_prefer_server_ciphers on;
+    ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    error_page 404 /404.html;
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+    }
+
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass unix:/var/run/php5-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+    #DDoS protection rules
+    limit_req zone=onephp;
+    limit_conn addrphp 10;
+    #client_body_timeout 5s;
+    #client_header_timeout 5s;
+
+}
+
