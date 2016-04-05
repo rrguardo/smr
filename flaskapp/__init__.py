@@ -68,10 +68,12 @@ else:
     import flaskapp.urls
     from flaskapp.user import user_bp
     from flaskapp.store import store_bp
+    from flaskapp.services_monitor import monitor_bp
     # BluePrints register here >>
     #app.register_blueprint(api_bp, url_prefix='/api')
     app.register_blueprint(user_bp, url_prefix='/user')
     app.register_blueprint(store_bp, url_prefix='/store')
+    app.register_blueprint(monitor_bp, url_prefix='/monitor')
 
 #flask-admin
 #import adminhelper
