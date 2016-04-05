@@ -1,0 +1,53 @@
+
+
+server {
+            listen 80;
+            server_name phplist.4simple.org;
+
+            root /var/www/phplist/public_html;
+            index index.php;
+
+            access_log /var/log/phplist_access.log;
+            error_log /var/log/phplist_error.log;
+
+            charset utf-8;
+
+	    rewrite ^/$ $uri/lists redirect;
+	    #rewrite / $/lists last;
+
+	    #try_files $uri $uri/ /index.php?$args;
+
+            location ~* \.(txt|log|inc)$ {
+                allow 127.0.0.1;
+                deny all;
+            }
+
+            location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+              expires max;
+              log_not_found off;
+           }
+
+            #block phplist config directory
+            location /config {
+                deny all;
+            }
+
+            #per the phplist .htaccess these are the only public allowed php files
+            location ~* (index\.php|upload\.php|connector\.php|dl\.php|ut\.php|lt\.php|download\.php)$ {
+                try_files $uri =404;
+                fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                fastcgi_pass unix:/var/run/php5-fpm.sock;
+                fastcgi_index index.php;
+                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                include fastcgi_params;
+            }
+
+
+            #block all other php file access from public
+            location ~ \.php$ {
+               deny all;
+            }
+
+}
+
+
