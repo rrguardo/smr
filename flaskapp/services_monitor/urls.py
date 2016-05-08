@@ -12,3 +12,4 @@ from flaskapp.services_monitor.views import *
 
 
 monitor_bp.add_url_rule('/cache', 'cache', monitor_cache, methods=['POST', 'GET'])
+monitor_bp.add_url_rule('/user', 'user', monitor_user, methods=['POST', 'GET'])
