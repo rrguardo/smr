@@ -1,6 +1,6 @@
 
 #DDoS protection rules
-limit_req_zone $binary_remote_addr zone=one:10m rate=5r/s;
+limit_req_zone $binary_remote_addr zone=one:10m rate=25r/s;
 limit_conn_zone $binary_remote_addr zone=addr:10m;
 limit_req_zone $binary_remote_addr zone=zstatic:10m rate=20r/s;
 
@@ -17,12 +17,12 @@ server {
 
         #DDoS protection rules
         limit_req zone=one;
-        limit_conn addr 5;
+        limit_conn addr 25;
 	}
 
 	location /static {
         alias /home/www-data/repos/smr_web/flaskapp/static/;
-        limit_conn addr 15;
+        limit_conn addr 25;
         limit_req zone=zstatic;
     }
 
@@ -51,12 +51,12 @@ server {
 
         #DDoS protection rules
         limit_req zone=one;
-        limit_conn addr 5;
+        limit_conn addr 25;
 	}
 
 	location /static {
         alias /home/www-data/repos/smr_web/flaskapp/static/;
-        limit_conn addr 15;
+        limit_conn addr 25;
         limit_req zone=zstatic;
     }
 
