@@ -13,4 +13,5 @@ def monitor_cache():
 
 def monitor_user():
     hdrs = request.headers
-    return render_template('services_monitor/user.html', headers=hdrs)
+    ip = request.remote_addr
+    return render_template('services_monitor/user.html', headers=hdrs, ip=str(ip))
