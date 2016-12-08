@@ -7,7 +7,6 @@
 """
 
 import json
-import logging
 from flask import jsonify, request
 from flaskapp.user.models import User
 from flaskapp.models import SMS_Status
@@ -116,7 +115,7 @@ def process_sms(sms_job):
         beanstalk.put(sms_job)
         beanstalk.close()
     except Exception as ex:
-        logging.exception("process_sms fails: %s", ex)
+        app.logger.exception("process_sms fails: %s", ex)
         return False
     return True
 

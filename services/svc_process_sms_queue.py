@@ -2,9 +2,6 @@
 
 import sys
 import json
-import logging
-LOG_LEVEL = logging.WARNING
-logging.basicConfig(format='%(asctime)s %(pathname)s %(lineno)s %(levelname)s:%(message)s', level=LOG_LEVEL)
 sys.path.append('..')
 
 from flaskapp import db, app
@@ -40,7 +37,7 @@ def proxy_inc_fails(class_inst):
 
 def queue_callback(body):
     try:
-        logging.info(" [x] Received %s", body)
+        app.logger.info(" [x] Received %s", body)
         job = json.loads(body)
         to_ = job.get("to")
         message_ = job.get("message")
@@ -71,7 +68,7 @@ def queue_callback(body):
             db.session.add(sm)
             db.session.commit()
     except Exception, e:
-        logging.exception("error in queue processing: %s" % e.message)
+        app.logger.exception("error in queue processing: %s" % e.message)
 
 
 def process_sms_queue():
