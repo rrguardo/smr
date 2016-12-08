@@ -3,6 +3,8 @@
 import sys
 import json
 import logging
+LOG_LEVEL = logging.WARNING
+logging.basicConfig(format='%(asctime)s %(pathname)s %(lineno)s %(levelname)s:%(message)s', level=LOG_LEVEL)
 sys.path.append('..')
 
 from flaskapp import db, app

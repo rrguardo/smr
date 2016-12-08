@@ -17,3 +17,4 @@ beanstalkc>=0.4.0
 twilio==4.6.0
 plivo==0.10.3
 nexmo==1.0.1
+PyYAML
