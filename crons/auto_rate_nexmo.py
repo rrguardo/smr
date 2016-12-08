@@ -23,7 +23,7 @@ def get_fresh_nexmo_pricing():
         output.write(resp.content)
 
 
-#get_fresh_nexmo_pricing()
+get_fresh_nexmo_pricing()
 
 
 outbound_sms_data = pd.read_excel('nexmo_pricing.xls', 'Outbound SMS',

@@ -2,7 +2,7 @@
 
 service="svc_process_sms_queue"
 svc_path="/home/www-data/repos/smr_web/services"
-total=7
+total=3
 
 to_add=$(($total-$(ps -ef  | grep "$service" | wc -l)))
 
