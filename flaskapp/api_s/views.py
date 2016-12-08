@@ -7,12 +7,13 @@
 """
 
 import json
+import logging
 from flask import jsonify, request
 from flaskapp.user.models import User
 from flaskapp.models import SMS_Status
 from flaskapp import db, app
 from flaskapp.utils.rate import out_sms_rate
-import pika
+import beanstalkc
 
 
 class Auth_API:
@@ -109,14 +110,13 @@ class Auth_API:
 def process_sms(sms_job):
     """Process the sms"""
     try:
-        credentials = pika.PlainCredentials(app.config.get('RABBIT_USER'), app.config.get('RABBIT_PASSW'))
-        connection = pika.BlockingConnection(pika.ConnectionParameters(
-            host=app.config.get('RABBIT_HOST'), port=app.config.get('RABBIT_PORT'), credentials=credentials))
-        channel = connection.channel()
-        channel.queue_declare(queue='sms')
-        channel.basic_publish(exchange='', routing_key='sms', body=sms_job)
-        connection.close()
-    except:
+        beanstalk = beanstalkc.Connection(host=app.config.get('BEANSTALK_HOST'),
+                                          port=app.config.get('BEANSTALK_PORT'))
+        beanstalk.use('sms')
+        beanstalk.put(sms_job)
+        beanstalk.close()
+    except Exception as ex:
+        logging.exception("process_sms fails: %s", ex)
         return False
     return True
 

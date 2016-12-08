@@ -2,6 +2,7 @@
 
 import sys
 import json
+import logging
 sys.path.append('..')
 
 from flaskapp import db, app
@@ -11,7 +12,7 @@ from flaskapp.sproxy.tw_proxy import tw_proxy
 from flaskapp.sproxy.plivo_proxy import plivo_proxy
 from flaskapp.sproxy.nexmo_proxy import nexmo_proxy
 from flaskapp.settings import Config
-import pika
+import beanstalkc
 
 
 PROXYS = [{"class": tw_proxy, "fails": 0, "enabled": False},
@@ -35,9 +36,9 @@ def proxy_inc_fails(class_inst):
             prox["fails"] += 1
 
 
-def queue_callback(ch, method, properties, body):
+def queue_callback(body):
     try:
-        print " [x] Received %r" % (body,)
+        logging.info(" [x] Received %s", body)
         job = json.loads(body)
         to_ = job.get("to")
         message_ = job.get("message")
@@ -68,17 +69,20 @@ def queue_callback(ch, method, properties, body):
             db.session.add(sm)
             db.session.commit()
     except Exception, e:
-        print "error in queue processing: %s" % e.message
+        logging.exception("error in queue processing: %s" % e.message)
 
 
 def process_sms_queue():
-    credentials = pika.PlainCredentials(Config.RABBIT_USER, Config.RABBIT_PASSW)
-    connection = pika.BlockingConnection(pika.ConnectionParameters(
-            host=Config.RABBIT_HOST, port=Config.RABBIT_PORT, credentials=credentials))
-    channel = connection.channel()
-    channel.queue_declare(queue='sms')
-    channel.basic_consume(queue_callback, queue='sms', no_ack=True)
-    channel.start_consuming()
+    beanstalk = beanstalkc.Connection(host=Config.BEANSTALK_HOST, port=Config.BEANSTALK_PORT)
+    beanstalk.use('sms')
+    while True:
+        job = beanstalk.reserve()
+        body = job.body
+        job.delete()
+        if body:
+            # TODO: this function should be called asynchronous
+            queue_callback(body)
+
 
 if __name__ == "__main__":
     process_sms_queue()

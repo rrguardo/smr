@@ -40,11 +40,8 @@ class Config(object):
     USER_AFTER_CONFIRM_ENDPOINT = 'user.panel'
     USER_AFTER_CHANGE_PASSWORD_ENDPOINT = 'user.panel'
     USER_AFTER_RESET_PASSWORD_ENDPOINT = 'user.panel'
-    # rabbitmq settings
-    RABBIT_USER = "smrxcdsfsx"
-    RABBIT_PASSW = "HvRh62Vc38VcTsKhTT31S"
-    RABBIT_HOST = "localhost"
-    RABBIT_PORT = 5672
+    BEANSTALK_HOST = "127.0.0.1"
+    BEANSTALK_PORT = 11300
     # only enable api
     IS_API = False
     if os.environ.get("IS_API", False):
