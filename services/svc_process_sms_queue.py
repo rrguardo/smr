@@ -74,13 +74,14 @@ def queue_callback(body):
 def process_sms_queue():
     beanstalk = beanstalkc.Connection(host=Config.BEANSTALK_HOST, port=Config.BEANSTALK_PORT)
     beanstalk.use('sms')
+    beanstalk.watch('sms')
     while True:
         job = beanstalk.reserve()
         body = job.body
+        job.delete()
         if body:
             # TODO: this function should be called asynchronous
             queue_callback(body)
-        job.delete()
 
 
 if __name__ == "__main__":
