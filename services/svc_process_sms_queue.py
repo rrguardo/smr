@@ -37,7 +37,7 @@ def proxy_inc_fails(class_inst):
 
 def queue_callback(body):
     try:
-        app.logger.info(" [x] Received %s", body)
+        app.logger.warning(" [x] Received %s", body)
         job = json.loads(body)
         to_ = job.get("to")
         message_ = job.get("message")
@@ -77,10 +77,10 @@ def process_sms_queue():
     while True:
         job = beanstalk.reserve()
         body = job.body
-        job.delete()
         if body:
             # TODO: this function should be called asynchronous
             queue_callback(body)
+        job.delete()
 
 
 if __name__ == "__main__":
