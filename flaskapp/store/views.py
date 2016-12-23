@@ -86,4 +86,5 @@ def cancel():
 
 
 def paddle_ipn():
-    print "OK"
+    app.logger.warning(request.form)
+    return "OK"
