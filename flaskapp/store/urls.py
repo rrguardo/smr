@@ -15,3 +15,6 @@ store_bp.add_url_rule('/paypal_ipn', 'paypal_ipn', paypal_ipn, methods=['POST',
     'GET'])
 store_bp.add_url_rule('/success.html', 'success', success)
 store_bp.add_url_rule('/cancel.html', 'cancel', cancel)
+
+
+store_bp.add_url_rule('/paddle_ipn', 'paddle_ipn', paddle_ipn, methods=['POST', 'GET'])

@@ -83,3 +83,7 @@ def success():
 def cancel():
     """PayPal IPN success page"""
     return render_template("store/cancel.html")
+
+
+def paddle_ipn():
+    print "OK"
