@@ -16,6 +16,7 @@ from sqlalchemy import and_
 from itertools import chain
 from flask import request, g, redirect, url_for, render_template,\
     flash, jsonify
+from flaskapp.store.paddle import verify as paddle_verify
 
 
 IPN_URLSTRING = 'https://www.paypal.com/cgi-bin/webscr'
@@ -86,5 +87,10 @@ def cancel():
 
 
 def paddle_ipn():
+    app.logger.warning(request.data)
     app.logger.warning(request.form)
+    if paddle_verify(request.form):
+        app.logger.warning("Paddle verify success")
+    else:
+        app.logger.warning("Paddle verify fail")
     return "OK"
