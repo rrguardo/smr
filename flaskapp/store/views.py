@@ -98,9 +98,6 @@ def paddle_ipn():
 
 def bitcoinpay_ipn():
     app.logger.warning(request.data)
+    app.logger.warning("++++++++++++++++++++++++++++++")
     app.logger.warning(request.form)
-    if paddle_verify(request.form):
-        app.logger.warning("Paddle verify success")
-    else:
-        app.logger.warning("Paddle verify fail")
     return "OK"
